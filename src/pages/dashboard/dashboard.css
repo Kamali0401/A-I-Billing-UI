@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-section {
+  display: flex;
+  flex: 1;
+  position: relative;
+  height: 100vh;
+  background-image: url('../../app/assests/login6.jpg'); /* Use your actual image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  position: relative;
+}
+
+.button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  padding: 30px 60px;
+  border-radius: 4px;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-overlay:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 1; /* Adjusts flex for smaller screens */
+  }
+
+  .button-overlay {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-overlay {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

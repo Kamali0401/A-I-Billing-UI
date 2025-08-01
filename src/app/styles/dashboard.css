@@ -1,0 +1,1881 @@
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f8f8f8 !important;
+}
+
+section .ProfileRightWidget {
+    width: calc(100% - 170px);
+    padding: 0;
+}
+
+.ProfileRightContainer {
+    display: block;
+    position: relative;
+    height: 100%;
+}
+
+.dropdown.nav-item{
+    list-style: none;
+    display: block;
+    position: relative;
+    height: 35px;
+    width: 35px;
+    margin: 0 0 0 8px;
+}
+
+a.ProfileIcon{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.ProfileIcon img{
+    width: 100%;
+    height: 100%;
+}
+
+li div.dropdown-menu a{
+    color: #444444;
+    font-size: 14px;
+}
+
+li div.dropdown-menu a:hover{
+    background-color: #f3f3f3;
+}
+
+li div.dropdown-menu{
+    padding: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #d1d1d1;
+    transform:translate3d(-80%,40px,0) !important
+}
+
+.ProfileHeaderWidget {
+    display: flex;
+    display: -moz-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 30px;
+    height: 60px;
+    align-items: center;
+}
+
+.ProfileHeaderRight{
+    display: flex;
+    display: -moz-flex;
+    height: 18px;
+}
+
+.ProfileHeaderButton a.btn, .ProfileHeaderButton span.btn, .ProfileHeaderButton button.btn {
+    font-size: 14px;
+    line-height: 14px !important;
+    height: 30px;
+    font-weight: normal !important;
+    padding: 7px 15px !important;
+}
+
+.ProfileHeaderRight span{
+    position: relative;
+    margin-left: 15px;
+    top: 2px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.ProfileHeaderRight span:hover{
+    cursor: pointer;
+}
+
+.ProfileHeaderTitle h5 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ProfileHeaderTitle h5 span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.ProfileHeaderOptions{
+    display: flex;
+    display: -moz-flex;
+    align-items: center;
+    height: 18px;
+    color: #7a329f;
+    font-size: 14px;
+}
+
+.ProfileHeaderOptions span:hover{
+    text-decoration: none;
+}
+
+.ProfileIconSearch:hover, .ProfileHeaderFilter:hover, .ProfileSearchContainer .closeBtn{
+    cursor: pointer;
+}
+
+.ProfileIconSearch{
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.ProfileIconSearch:after{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    /* background-image: url('../assets/images/Search.svg'); */
+}
+
+.ProfileHeaderSort{
+    margin-right: 42px;
+}
+
+.ProfileHeaderSort:after{
+    content: '';
+    position: absolute;
+    right: 84px;
+    top: 22px;
+    width: 12px;
+    height: 20px;
+    /* background-image: url("../assets/images/Caret_Dropdown_Purple.svg"); */
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -o-transition: all linear .3s;
+    transition: all linear .3s;
+}
+
+.ProfileContentWidget, .SPContentWidget, .ServiceRequestsWidget {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 120px);
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.ProfileContentWidget.ScrollBar, .SPContentWidget.ScrollBar {
+    overflow: auto;
+}
+
+.SPContentWidget .ProfileContainer {
+    width: calc(50% - 20px);
+    float: left;
+    margin: 0 10px;
+}
+
+.SPContentWidget .ProfileContainer.topProfile {
+    /* height: calc(100vh - 140px); */
+    height: 596px;
+}
+
+.SPContentWidget .ProfileContainer .card {
+    width: 100%;
+    margin: 0 0 20px 0;
+}
+
+.SPContentWidget .bottomProfile {
+    flex-direction: column;
+}
+
+.ServiceRequestsWidget .ProfileContainer {
+    width: calc(100% - 20px);
+    float: left;
+    height: 100%;
+}
+
+.ServiceRequestsWidget .ProfileCardHeader{
+    border-bottom: 1px solid #dcdcdc;
+    height: 72px;
+}
+
+.ServiceRequestsWidget .ProfileHeaderButton{
+    padding-right: 16px;
+}
+
+.HeaderRequestLabelID{
+    color: #444444;
+}
+
+.HeaderBackButton{
+    display: inline-block;
+    position: relative;
+    height: 15px;
+    width: 18px;
+    background-repeat: no-repeat;
+    /* background-image: url("../assets/images/BackProfilePurple.svg"); */
+    background-size: 100%;
+    background-position: center;
+}
+
+.HeaderRequestLabel{
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.HeaderBackWrapper{
+    border-right: 1px solid #dcdcdc;
+    padding: 25px 25px;
+}
+
+.ServiceCategoryWidget{
+    padding: 0 0 30px 0;
+}
+
+.LeftPalette{
+    width: 275px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border: solid 1px #b7b7b7;
+    margin: 30px 15px 30px 30px;
+    padding: 30px;
+    float: left;
+}
+
+.LeftPaletteHeader{
+    font-size: 18px;
+}
+
+.rightPalette{
+    margin: 30px 30px 0 15px;
+    float: left;
+    width: calc(100% - 365px);
+    height: 100%;
+}
+
+.PostedByImageContainer {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #dcdcdc;
+    flex-direction: row;
+    align-items: center;
+}
+
+.PostedByImageContainer .ProfileImage{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.BlockImageDetails{
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 40px);
+    line-height: 16px;
+    padding: 0 0 0 20px;
+}
+
+.BlockImageDetailsName{
+    font-size: 16px;
+    line-height: 16px;
+    color: #444444;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.BlockImageDetailsActivity{
+    font-size: 14px;
+    line-height: 14px;
+    color: #8c8c8c;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.BlockImageDetailsDate{
+    position: relative;
+    font-size: 14px;
+    color: #444444;
+}
+
+.BlockImageDetailsDate:after{
+    opacity: 0.5;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -9px;
+    width: 12px;
+    height: 20px;
+    /* background-image: url("../assets/images/Caret.svg"); */
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -o-transition: all linear .3s;
+    transition: all linear .3s;
+}
+
+.BlockProfileDetails{
+    display: inline-block;
+    padding: 0 20px;
+    vertical-align: middle;
+    width: calc(100% - 125px);
+}
+
+.BlockProfileDetailsName{
+    font-size: 14px;
+    color: #444444;
+}
+
+.BlockProfileDetailsName > span:hover{
+    cursor: pointer;
+}
+
+.BlockProfileDetailsActivity{
+    font-size: 12px;
+    line-height: 12px;
+    color: #a6a6a6;
+    margin-bottom: 4px;
+}
+
+.BlockProfileDetailsStatus{
+    width: 65px;
+    text-align: right;
+}
+
+.BlockProfileDetailsStatus a.btn-hired:hover{
+    cursor: pointer !important;
+}
+
+a.btn-hired, a.btn-hired:hover {
+    color: #007f84 !important;
+    /* border-color: #007f84 !important; */
+    font-size: 12px !important;
+    padding: 5px !important;
+    line-height: 12px !important;
+    cursor: auto !important;
+}
+
+.btn-applied{
+    color: #3089df !important;
+    /* border-color: #3089df !important; */
+    font-size: 12px !important;
+    padding: 5px !important;
+    line-height: 12px !important;
+}
+
+.btn-applied:hover{
+    background-color: #3089df !important;
+    color: #ffffff !important
+}
+
+button.btn-invited, a.btn-invited{
+    font-size: 12px !important;
+    padding: 5px !important;
+    line-height: 12px !important;
+}
+
+.BlockProfileMatching, .BlockProfileApplied, .BlockProfileInvited{
+    font-size: 12px;
+    line-height: 12px;
+    display: inline-block;
+    color: #444444;
+}
+
+.BlockProfileMatching{
+    color: #444444;
+}
+
+.BlockProfileApplied{
+    color: #3089df;
+}
+
+.BlockProfileInvited{
+    color: #892abb;
+}
+
+.BlockProfileContainer:after{
+    opacity: 0.5;
+    content: '';
+    position: absolute;
+    right: 12px;
+    width: 12px;
+    height: 20px;
+    top: 26px;
+    /* background-image: url("../assets/images/Caret.svg"); */
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -o-transition: all linear .3s;
+    transition: all linear .3s;
+}
+
+.BlockImageContainer{
+    padding: 25px 40px 25px 20px;
+    border-bottom: 1px solid rgba(60,16,83,0.1);
+}
+
+.BlockImageContainer:hover{
+    cursor: pointer;
+}
+
+.BlockImageContainer .ProfileImage{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.BlockProfileContainer{
+    display: flex;
+    display: -moz-flex;
+    align-items: center;
+    position: relative;
+    padding: 15px 20px;
+}
+
+.BlockProfileContainer .ProfileImage, .BlockImageContainer .ServiceImage{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+}
+.BlockProfileContainer .ProfileImage{
+    background-color: #f9f7fb;
+}
+
+.PostedByProfileDetails{
+    display: inline-block;
+    margin: 8px 10px;
+    vertical-align: middle;
+}
+
+.ProfileDetailsName{
+    font-size: 16px;
+    color: #444444;
+}
+
+.ProfileDetailsDate{
+    font-size: 14px;
+    color: rgba(68, 68, 68, 0.7);
+}
+
+.ProfileIcon{
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.ProfileIconDetails{
+    display: flex;
+    display: -moz-flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    color: #371047;
+}
+
+.ProfileContainer {
+    position: relative;
+    display: flex;
+    display: -moz-flex;
+    height: calc(100vh - 540px);
+}
+
+
+
+.PaletteTabs{
+    border: none !important;
+}
+
+.CardPalette .PaletteTabs, .CardPalette .tab-content{
+    padding: 0 30px;
+}
+
+.PaletteTabs .nav-item .nav-link{
+    font-size: 16px;
+    margin-bottom: 0;
+    padding: 0 0 5px 0 !important;
+    margin-right: 26px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(0,0,0,0);
+}
+
+.PaletteTabs .nav-item .nav-link:hover{
+    cursor: pointer;
+    border-color: rgba(0,0,0,0);
+}
+
+.PaletteTabs .nav-item .active.nav-link{
+    color: #7a329f;
+    border: none;
+    border-bottom: 1px solid #7a329f;
+}
+
+.TabBody{
+    margin-top: 40px;
+}
+
+.ScheduleTableRow {
+    padding: 0;
+    font-size: 14px;
+    height: 60px;
+    border-bottom: 1px solid #dcdcdc;
+    clear: both;
+}
+
+.ScheduleTableHeader{
+    padding: 0;
+    height: 60px;
+    border-bottom: 1px solid #dcdcdc;
+    clear: both;
+}
+
+.ScheduleTableRow > div > span, .ScheduleTableHeader > div > span{
+    padding: 20px;
+    display: block;
+    white-space: nowrap;
+}
+
+.ScheduleRowButton a{
+    font-size: 14px !important;
+    margin: 10px 0;
+    padding: 5px 10px !important;
+    float: right;
+    height: 30px;
+    line-height: 18px !important;
+}
+
+.TabBody .ServiceCategoryContent{
+    padding: 10px 0;
+}
+
+.TabBody .ServiceTypesSlider div:first-child{
+    margin-left: 0;
+}
+
+.TabBody .ServiceTypesSlider div:last-child{
+    margin-right: 0;
+}
+
+.TabBody .ServiceTypeList{
+    height: 162px;
+}
+
+.TabBody .ServiceTasks.Summary{
+    margin: 10px 0 24px 0;
+}
+
+.TabBody .SPAvailWidget div:first-child{
+    /* margin-left: 0; */
+}
+
+.TabBody .SPAvailWidget div:last-child{
+    /* margin-right: 0; */
+}
+
+a.ProfileCardHeaderLink:hover{
+    text-decoration: none;
+    color: #7a329f !important;
+}
+
+.ProfileCard {
+    width: calc(50% - 20px);
+    margin: 0 10px 20px 10px;
+    padding: 0;
+    float: left;
+    -webkit-transition: all linear .2s;
+    -moz-transition: all linear .2s;
+    -ms-transition: all linear .2s;
+    -o-transition: all linear .2s;
+    transition: all linear .2s;
+}
+
+.ProfileCard .list-group .list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    justify-content: center;
+}
+
+.ProfileCard > .list-group {
+    height: 40px;
+}
+
+.ProfileCard.extended > .list-group {
+    height: 40px;
+}
+
+.ProfileCard > .list-group > .list-group-item {
+    height: 40px;
+}
+
+.myConversationContainer.list-group-item:focus, .myConversationContainer.list-group-item:hover, .mySPContainer.list-group-item:hover, .mySPContainer.list-group-item:focus {
+    z-index: auto;
+}
+
+.ProfileCardBody {
+    padding: 20px 0 0 0;
+}
+
+.ProfileCardBody > div {
+    padding: 0 20px;
+}
+
+.SPContentWidget .ProfileContainer .ProfileCard.extended {
+    /* height: calc(100vh - 140px); */
+    height: 596px;
+    z-index: 9;
+}
+
+.SPContentWidget .topProfile .ProfileCard {
+    height: 100%;
+    z-index: 9;
+}
+
+.SPContentWidget .topProfile .ProfileCard > .list-group {
+    display: none;
+}
+
+.SPContentWidget .topProfile .ProfileCard .ProfileCardBody .bottomPalette {
+    /* height: calc(100vh - 292px); */
+    height: 445px;
+}
+
+.ProfileCard.extended .ProfileCardBody .bottomPalette {
+    max-height: calc(100vh - 324px);
+    overflow-y: hidden;
+    height: auto;
+}
+
+.ProfileCard .ProfileCardBody .bottomPalette.ServiceRequestPalette .scrollarea-content {
+    height: 100%;
+}
+
+.ProfileCard.extended .ProfileCardBody .bottomPalette .scrollarea-content, .SPContentWidget .topProfile .ProfileCard .ProfileCardBody .bottomPalette .scrollarea-content {
+    height: auto;
+}
+
+.ProfileCard .ProfileCardBody .bottomPalette .scrollarea-content {
+    height: 172px;
+}
+
+.ProfileCard.extended .ProfileCardBody .ServiceRequestPalette {
+    max-height: calc(100vh - 277px);
+    height: 100vh;
+}
+
+.ProfileCard.extended .ProfileCardBody, .SPContentWidget .topProfile .ProfileCard .ProfileCardBody {
+    height: calc(100% - 40px);
+}
+
+.ProfileShowMore {
+    font-size: 12px;
+    color: #b286bc;
+    -webkit-transition: all linear .2s;
+    -moz-transition: all linear .2s;
+    -ms-transition: all linear .2s;
+    -o-transition: all linear .2s;
+    transition: all linear .2s;
+}
+
+.ProfileIconShowMore {
+    display: inline-block;
+    position: relative;
+    height: 10px;
+    width: 10px;
+    top: 1px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    /* background-image: url("../assets/images/Caret_Dropdown_Purple.svg"); */
+    background-size: 100%;
+    background-position: center;
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -webkit-transition: all linear .2s;
+    -moz-transition: all linear .2s;
+    -ms-transition: all linear .2s;
+    -o-transition: all linear .2s;
+    transition: all linear .2s;
+}
+
+.ProfileCard.extended .ProfileIconShowMore{
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);}
+
+.ProfileShowMore:hover {
+    color: #7a329f;
+    cursor: pointer;
+    background-color: #f1e7f7;
+    text-decoration: none;
+}
+
+.ProfileCard form {
+    height: 100%;
+}
+
+.ProfileContainer.topProfile, .bottomProfile .innerWidget:first-child {
+    /* height: calc(100vh - 397px); */
+    height: 339px;
+}
+
+.BoardContainer{
+    display: flex !important;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.ServiceRequestBoard{
+    width: 33.33%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.NewBoard {
+    border-width:2px 0;
+    position:absolute;
+    display:block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #7a329f;
+    padding: 3px 8px 3px 16px;
+    top: 12px;
+    right: -5px;
+    background-color: #f4ecfc;
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.NewBoard:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 0 solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 3px solid #d9bdf5;
+    top: -3px;
+    right: 0;
+}
+
+.NewBoard:before {
+    content: "";
+    display:inline-block;
+    border-bottom-width:2px;
+    border-left-width:2px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    position: absolute;
+    bottom: 0;
+    left: 11px;
+    width: 24px;
+    background-color: #ffffff;
+    top: -13px;
+    height: 24px;
+}
+
+.DetailsDateSeperator{
+    color: #a6a6a6;
+    margin: 0 10px;
+}
+
+.ProfileContainer.bottomProfile {
+    min-height: 300px;
+    height: calc(100vh - 140px);
+}
+
+div.scrollarea .scrollbar-container.vertical {
+    width: 5px;
+    z-index: 999;
+}
+
+div.scrollarea .scrollbar-container.vertical .scrollbar{
+    background: #acacac;
+}
+
+.scrollarea-content {
+    /* min-height: 100%; */
+}
+
+.ProfileHeaderButton .standBy {
+    font-size: 14px;
+    color: #444444;
+    margin-right: 15px;
+}
+
+.FilterButton:hover{
+    cursor: pointer;
+}
+
+.hiddenScreen {
+    position: fixed;
+    height: 100%;
+    width: calc(100% - 180px);
+    background: rgba(0, 0, 0, .4);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+}
+
+.hiddenScreen, .ProfileLeftWidget {
+    -webkit-transition: all ease-in-out 0.2s;
+    -moz-transition: all ease-in-out 0.2s;
+    -ms-transition: all ease-in-out 0.2s;
+    -o-transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.2s;
+}
+
+.hiddenScreen.true {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ScheduleTableHeader, .ScheduleTableRow{
+    display: flex;
+    display: -moz-flex;
+    align-items: center;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+.ScheduleTableRow{
+    border-left: 3px solid rgba(0,0,0,0);
+}
+
+.ScheduleTableRow:hover{
+    cursor: pointer;
+    border-left: 3px solid #7a329f;
+    background-color: #f4ecfc;
+}
+
+.ScheduleTableRow:hover i{
+    filter: brightness(100%);
+}
+
+.ScheduleTableHeader > div > span, .ScheduleTableRow > div > span{
+    padding: 5px 10px;
+    white-space: normal;
+}
+
+.ScheduleTableHeader > div.ScheduleContentDate, .ScheduleTableRow > div.ScheduleContentDate{
+    width: 14%;
+}
+
+.ScheduleTableHeader > div.ScheduleContentTime{
+    width: 20%;
+}
+
+.ScheduleTableRow > div.ScheduleContentTime{
+    font-size: 12px;
+    width: 16%;
+}
+
+.ScheduleTableHeader > div.ScheduleContentSession, .ScheduleTableRow > div.ScheduleContentSession{
+    width: 20%;
+}
+
+.ScheduleTableRow > div.ScheduleContentSession{
+    font-size: 12px;
+}
+
+.ScheduleTableHeader > div.ScheduleContentStatus, .ScheduleTableRow > div.ScheduleContentStatus{
+    width: 20%;
+}
+
+.ScheduleTableHeader > div.ScheduleContentButton, .ScheduleTableRow > div.ScheduleContentButton{
+    width: 30%;
+}
+
+.slick-initialized .slick-slide {
+    display: block
+}
+
+.ProfileIconEye{
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    margin-right: 5px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-image: url("../assets/images/ViewEye.svg"); */
+}
+
+div.ProfileSearchContainer form{
+    display: flex;
+    display: -moz-flex;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}
+
+div.ProfileSearchContainer{
+    position: absolute;
+    right: 75px;
+    height: 30px;
+    margin: 0;
+    width: 0;
+    overflow: hidden;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    transition: all linear 0.3s;
+}
+
+div.ProfileSearchContainer.true{
+    width: calc(100% - 110px);
+    right: 80px;
+}
+
+div.ProfileSearchContainer.CareTeam.true{
+    width: calc(100% - 230px);
+    right: 30px;
+    position: fixed;
+    z-index: 99999;
+    background-color: #f8f8f8;
+    padding-right: 15px;
+}
+
+.ProfileSearchContainer .btn{
+    font-size: 14px;
+    padding: 5px 10px !important;
+    height: 30px;
+    margin: 0 10px;
+    line-height: 14px !important;
+}
+
+.ProfileSearchContainer .form-control{
+    height: 100%;
+}
+
+div.ProfileSearchContainer, .ProfileSearchContainer .form-control, .ProfileSearchContainer .form-control:focus, .ProfileSearchContainer .closeBtn{
+    background-color: #f8f8f8;
+}
+
+.ProfileSearchContainer .closeBtn{
+    display: inline;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 0;
+    padding: 0;
+}
+
+.ProfileSearchContainer .closeBtn:after{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    /* background-image: url("../assets/images/remove.png"); */
+}
+
+.formCheckboxes input.CheckServiceInput{
+    position: absolute;
+    opacity: 0;
+}
+
+.formCheckboxes .CheckServiceLabel{
+    width: 100%;
+    margin: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    font-weight: normal;
+    border: 1px solid rgba(0,0,0,0);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+}
+
+.formCheckboxes .CheckServiceLabel:hover, .formCheckboxes input.CheckServiceInput:checked ~ label{
+    cursor: pointer;
+    background-color: #f0e6f2;
+}
+
+.formCheckboxes input.CheckServiceInput:checked ~ label{
+    border-color: #7a329f;
+}
+
+.CheckServiceLabelContent{
+    display: flex;
+}
+
+.CheckServiceLabelContent .CheckServiceImage{
+    height: 42px;
+    width: 42px;
+}
+
+.CheckServiceLabelContent .CheckServiceImage img{
+    height: 100%;
+}
+
+.CheckServiceLabelContent .CheckServiceImageContent{
+    display: flex;
+    display: -moz-flex;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    width: 100%;
+    line-height: 24px;
+    margin: 0 15px;
+}
+
+.CheckServiceLabelContent .CheckServiceImageContent > span{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.formCheckboxes .CheckServiceLabel .ServiceListCategory{
+    font-size: 14px;
+    color: #a6a6a6;
+}
+
+.formCheckboxes .CheckServiceLabel .ServiceListPeriod i {
+    font-size: 14px;
+    font-style: normal;
+    color: #444444;
+    padding: 0 15px;
+    border-left: 1px solid #a6a6a6;
+}
+
+.formCheckboxes .CheckServiceLabel .ServiceListPeriod i:first-child {
+    border: 0;
+    padding-left: 0;
+    color: #491556;
+}
+
+.CheckServiceLabelContent .CheckServiceComment{
+    display: flex;
+    font-size: 12px;
+    color: #892abb;
+    align-items: flex-end;
+}
+
+.ModalSR .modal-body{
+    padding: 0;
+}
+
+.ModalSRContent{
+    max-height: calc(100vh - 150px);
+    overflow: hidden;
+    position: relative;
+}
+
+.ModalSRContent .modalSRTitle{
+    padding: 15px 0 0 0;
+}
+
+.ModalSRContent .ModalSRTop{
+    max-height: calc(100vh - 220px);
+    padding: 20px;
+    overflow: auto;
+}
+
+.ModalSRContent .ModalSRBottom{
+    height: 70px;
+    padding: 16px;
+    text-align: right;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+}
+
+.ModalSRContent .ModalSRBottom.pg_engage{
+    display:flex;
+    justify-content:flex-end;
+    flex-direction: row;
+}
+
+.ModalSRBottom.pg_engage .btn-primary{
+    margin-right: 7px;
+    margin-left: 8px;
+}
+.ModalSRBottom.pg_engage .btn-outline-primary{
+    margin-right: 7px;
+}
+.ModalSRContent .ModalSRBottom .btn{
+    height: 40px;
+    padding: 10px 15px !important;
+    line-height: 20px !important;
+}
+
+.ProfileServicesVisitList .NoRequestServiceProvider{
+    padding: 40px 0 0 0;
+}
+
+@media (min-width: 1367px) {
+    .SPContentWidget .ProfileContainer.topProfile {
+        /* height: calc(100vh - 143px); */
+        height: 615px;
+    }
+
+    .SPContentWidget .topProfile .ProfileCard .ProfileCardBody .bottomPalette {
+        /* height: calc(100vh - 296px); */
+        height: 464px;
+    }
+
+    .bottomProfile .innerWidget:first-child, .ProfileContainer.topProfile {
+        /* height: calc(100vh - 396px); */
+        height: 360px;
+    }
+
+    .bottomProfile.ServiceProvider .innerWidget:first-child, .ProfileContainer.topProfile {
+        height: 485px;
+    }
+
+    div.ServiceRequestPalette .ProfileServicesVisitList .ProfileServicesVisitContent{
+        /* padding: 22px 20px; */
+        padding: 18px 20px;
+        cursor: pointer;
+    }
+
+    div.ServiceProvider div.ServiceRequestPalette .ProfileServicesVisitList .ProfileServicesVisitContent {
+        /* padding: 14px 20px; */
+        padding: 18px 20px;
+    }
+
+    .ProfileCardBody .ServiceRequestPalette {
+        height: 350px;
+    }
+
+    .ServiceProvider .ProfileCardBody .ServiceRequestPalette {
+        height: 325px;
+    }
+
+    .ProfileSkillServices.ServiceRequest .ServicesDesc{
+        margin: 5px 0;
+    }
+
+    .bottomPalette {
+        height: 274px;
+    }
+
+    div.bottomPalette .ProfileServicesVisitList .ProfileServicesVisitContent:first-child {
+        margin-top: 12px;
+    }
+
+    .ProfileServicesVisitList .NoRequestServiceProvider{
+        padding: 20px 0 0 0;
+    }
+}
+
+@media (max-width: 1366px) {
+
+    .innerWidget .card.extended {
+        height: calc(100vh - 140px);
+    }
+
+    .innerWidget .ProfileCard.extended .ProfileCardBody .ServiceRequestPalette {
+        /* max-height: calc(100vh - 277px);
+        height: 100vh; */
+        max-height: 475px;
+        height: auto;
+        overflow: auto;
+    }
+
+    .ProfileCardBody .ServiceRequestPalette{
+        /* height: calc(100vh - 556px); */
+        height: 190px;
+        margin: 0;
+    }
+
+    .ProfileSkillServices.ServiceRequest .ServicesDesc{
+        margin: 3px 0;
+    }
+
+    div.ServiceRequestPalette .ProfileServicesVisitList .ProfileServicesVisitContent{
+        /* padding: 12px 20px; */
+        padding: 18px 20px;
+        cursor: pointer;
+    }
+
+    .ProfileConversationWidget {
+        height: 230px;
+    }
+
+    div.ServiceRequestBoard{
+        width: 33.33%;
+    }
+
+    .ProfileServicesVisitList .NoRequestServiceProvider{
+        padding: 20px 0 0 0;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .SPContentWidget .ProfileContainer .ProfileCard.extended{
+        height: 557px;
+    }
+
+    .ProfileLeftWidget {
+        width: 150px;
+    }
+
+    .profileSideNavigationLink, .asideMenuNavigationLink {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+
+    section .ProfileRightWidget {
+        width: calc(100% - 150px);
+    }
+
+    .SPContentWidget .topProfile .ProfileCard .ProfileCardBody .bottomPalette {
+        /* height: calc(100vh - 295px); */
+        height: 407px;
+    }
+
+    div.ProfileCardBody .ServiceRequestPalette{
+        height: calc(100vh - 540px);
+    }
+
+    div.bottomProfile .innerWidget:first-child, div.ProfileContainer.topProfile{
+        /* height: calc(100vh - 378px); */
+        height: 320px;
+    }
+
+    div.ServiceRequestPalette .ProfileServicesVisitList .ProfileServicesVisitContent{
+        /* padding: 23px 20px; */
+        padding: 18px 20px;
+        cursor: pointer;
+    }
+
+    .ProfileCard .ProfileCardBody .bottomPalette.ServiceRequestPalette .scrollarea-content{
+        height: auto;
+    }
+
+    .innerWidget .ProfileCard.extended .ProfileCardBody .ServiceRequestPalette {
+        /* max-height: calc(100vh - 276px);
+        max-height: calc(100vh - 264px); */
+        max-height: 435px;
+        overflow: auto;
+    }
+
+    .innerWidget .card.extended {
+        height: calc(100vh - 140px);
+    }
+
+    .ProfileCardNameContainer {
+        width: 80px;
+    }
+
+    .ProfileServices {
+        max-width: calc(100% - 155px);
+    }
+
+    .ProfileServices .ServicesTitle, .ProfileSkillServices .ServicesTitle, .SPThreadContent .SPIndiTitle {
+        font-size: 14px;
+    }
+
+    .ProfileServices .ServicesDesc, .ProfileSkillServices .ServicesDesc, .SPThreadContent .SPContent {
+        font-size: 12px;
+    }
+
+    .SPThreadContent .SPContent span {
+        margin: 0 9px;
+    }
+
+    .SPThreadContent .SPContent span:before {
+        left: -13px;
+    }
+
+    .SPThreadContent {
+        line-height: 22px;
+        width: calc(100% - 160px);
+    }
+
+    .SPAvatarWidget {
+        margin: 0 10px 0 0;
+    }
+
+    .SPCount .SPRate {
+        line-height: 22px;
+    }
+
+    .SPCount .SPRate span {
+        font-size: 16px;
+    }
+
+    .SPCount {
+        width: 70px;
+    }
+
+    .dateRow label {
+        margin: 0;
+    }
+
+    .ProfileConversationWidget.ServiceProvider {
+        height: 203px;
+    }
+
+    .ProfileConversationWidget {
+        height: 210px;
+    }
+
+    .LeftPalette {
+        width: 230px;
+        padding: 20px;
+    }
+
+    .tab-content>.TabBody {
+        margin-top: 15px;
+    }
+
+    .rightPalette {
+        width: calc(100% - 320px);
+    }
+
+    .ScheduleRowButton a {
+        margin: 10px 5px;
+    }
+
+    .ScheduleTableHeader, .ScheduleTableRow{
+        display: flex;
+        display: -moz-flex;
+        align-items: center;
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .ScheduleTableHeader > div{
+        font-size: 14px;
+    }
+
+    .ScheduleTableHeader > div, .ScheduleTableRow > div{
+        width: auto;
+    }
+
+    .ScheduleTableHeader > div > span, .ScheduleTableRow > div > span{
+        padding: 5px 10px;
+        white-space: normal;
+    }
+
+    .ScheduleTableHeader > div.ScheduleContentDate, .ScheduleTableRow > div.ScheduleContentDate{
+        width: 14%;
+    }
+
+    .ScheduleTableHeader > div.ScheduleContentTime{
+        width: 20%;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentTime{
+        font-size: 12px;
+        width: 16%;
+    }
+
+    .ScheduleTableHeader > div.ScheduleContentSession, .ScheduleTableRow > div.ScheduleContentSession{
+        width: 20%;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentSession{
+        font-size: 12px;
+    }
+
+    .ScheduleTableHeader > div.ScheduleContentStatus, .ScheduleTableRow > div.ScheduleContentStatus{
+        width: 20%;
+    }
+
+    .ScheduleTableHeader > div.ScheduleContentButton, .ScheduleTableRow > div.ScheduleContentButton{
+        width: 30%;
+    }
+
+    div.ServiceRequestBoard{
+        width: 50%;
+    }
+
+    .ProfileServicesVisitList .NoRequestServiceProvider{
+        padding: 30px 0 0 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .ProfileLeftWidget {
+        position: fixed;
+        height: 100%;
+    }
+
+    section .ProfileRightWidget {
+        margin: 0 0 0 150px;
+    }
+
+    nav.navbarProfile {
+        width: calc(100% - 150px);
+        height: 60px !important;
+        padding: 10px;
+    }
+
+    .card > .list-group {
+        display: none;
+    }
+
+    .ProfileHeaderWidget {
+        margin: 0 20px;
+    }
+
+    .ProfileContentWidget, .SPContentWidget {
+        padding: 0 10px;
+    }
+
+    .ProfileRightContainer {
+        margin-top: 60px;
+    }
+
+    .ProfileContentWidget .ProfileContainer, .SPContentWidget .ProfileContainer {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .SPContentWidget .ProfileContainer {
+        width: calc(100% - 20px);
+    }
+
+    .ProfileContentWidget .ProfileContainer {
+        width: 100%;
+    }
+
+    .SPContentWidget .ProfileContainer.topProfile, .SPContentWidget .topProfile .ProfileCard .ProfileCardBody .bottomPalette, .bottomProfile .innerWidget:first-child, .ProfileCard .ProfileCardBody .bottomPalette.ServiceRequestPalette .scrollarea-content, .ProfileCardBody .ServiceRequestPalette, .bottomPalette, .ProfileCard .ProfileCardBody .bottomPalette .scrollarea-content {
+        height: 100%;
+    }
+
+    .ProfileCardNameContainer {
+        width: 110px;
+    }
+
+    div.ServiceRequestPalette .ProfileServicesVisitList .ProfileServicesVisitContent {
+        /* padding: 15px 20px; */
+        padding: 18px 20px;
+        cursor: pointer;
+    }
+
+    .ProfileServices {
+        max-width: calc(100% - 240px);
+    }
+
+    .ProfileServicesVisitList {
+        padding: 15px 0;
+    }
+
+    .ProfileCard {
+        width: calc(100% - 20px);
+    }
+    .rightPalette{
+        width: 100%;
+        padding: 30px 20px 20px 20px;
+        margin: 0;
+        height: 100%;
+    }
+
+    .ScheduleTableRow > div, .ScheduleTableRow{
+        display: flex;
+        display: -moz-flex;
+        flex-wrap: wrap;
+        height: auto;
+        align-items: center;
+    }
+
+    .ServiceCategoryWidget{
+        padding: 0;
+    }
+
+    .ScheduleTableRow{
+        border: 1px solid #dcdcdc;
+        margin-bottom: 15px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .ProfileConversationWidget.ServiceProvider {
+        height: auto;
+    }
+
+    .ProfileConversationWidget {
+        height: auto;
+    }
+
+    .ScheduleTableHeader{
+        display: none;
+    }
+
+    .tab-content > .TabBody{
+        margin-top: 15px;
+    }
+
+    .ScheduleRowButton a{
+        margin: 0;
+    }
+
+    .ScheduleTableRow > div{
+        padding: 10px 15px;
+    }
+
+    .ScheduleTableRow > div > span{
+        padding: 0;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentDate{
+        width: 50%;
+        order: 1;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentTime{
+        justify-content: flex-end;
+        width: 50%;
+        order: 2;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentSession{
+        border-bottom: 1px solid #dcdcdc;
+        width: 100%;
+        order: 3;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentStatus{
+        width: 50%;
+        order: 4;
+    }
+
+    .ScheduleTableRow > div.ScheduleContentButton{
+        justify-content: flex-end;
+        width: 50%;
+        order: 5;
+    }
+
+    .LeftPalette {
+        width: 100%;
+        padding: 20px 20px 0 20px;
+        margin: 0;
+        border: 0;
+    }
+
+    .LeftPostedBy{
+        display: flex;
+        display: -moz-flex;
+        flex-wrap: wrap;
+    }
+
+    .LeftPostedBy .PostedByImageContainer:first-child{
+        width: 70%;
+        justify-content: flex-start;
+    }
+
+    .LeftPostedBy .PostedByImageContainer{
+        width: 10%;
+        display: flex;
+        display: -moz-flex;
+        justify-content: center;
+    }
+
+    .PostedByImageContainer .ProfileIconDetails{
+        font-size: 0;
+    }
+
+    .ProfileIconDetails .ProfileIcon{
+        margin: 0;
+    }
+
+    .BoardContainer{
+        flex-direction: column;
+    }
+
+    div.ServiceRequestBoard{
+        width: 100%;
+        height: auto;
+    }
+
+    .ServiceRequestBoard{
+        padding: 0 10px 0 0;
+    }
+
+    div.ProfileSearchContainer.true {
+        width: calc(100% - 90px);
+        right: 70px;
+    }
+
+    div.ProfileSearchContainer.CareTeam.true{
+        width: calc(100% - 230px);
+        right: 30px;
+        position: fixed;
+        z-index: 99999;
+        background-color: #f8f8f8;
+        padding-right: 15px;
+    }
+
+    .ProfileServicesVisitList .NoRequestServiceProvider{
+        padding: 10px 0 0 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .iconProfile{
+        margin: 0 10px 0 15px;
+    }
+
+    .navbar-brand {
+        display: inline-block !important;
+    }
+
+    nav.navbarProfile {
+        padding: 10px 20px;
+    }
+
+    section .ProfileRightWidget {
+        margin: 0;
+        width: 100%;
+    }
+
+    nav.navbarProfile {
+        width: 100%;
+    }
+
+    .asideMenuNavigationLink {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .ProfileRightContainer {
+        margin-bottom: 60px;
+    }
+
+    .ProfileLeftWidget {
+        z-index: 101;
+        width: 180px;
+        left: calc(70px - 100%);
+    }
+
+    .ProfileLeftWidget.true {
+        left: 0;
+    }
+
+    div.bottomPalette .ProfileServicesVisitList .ProfileServicesVisitContent{
+        display: inline-block;
+        height: auto;
+    }
+
+    .ServicesTimeContainer{
+        float: right;
+        margin: 0 0 6px 0;
+        width: 48px;
+    }
+
+    .ProfileServices{
+        width: 100%;
+        float: left;
+        max-width: calc(100% - 60px);
+        margin: 0 0 6px 0;
+        height: 48px;
+        justify-content: center;
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .ServicesTimeContainer .ServicesTime{
+        width: 48px;
+        height: 48px;
+    }
+
+    .ProfileCardImageContainer{
+        height: 40px;
+        width: 40px;
+        display: inline-block;
+        float: left;
+        margin: 0 0 0 10px;
+    }
+
+    .ProfileCardNameContainer{
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        flex-direction: column;
+        width: calc(100% - 70px);
+        float: left;
+        font-weight: 600;
+    }
+
+    .VisitScheduleTitle{
+        margin: 0;
+    }
+
+    .ProfileSubOptions{
+        display: flex;
+        float: right;
+        height: 40px;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .ServicesTypeContainer{
+        width: 40px;
+        float: left;
+    }
+
+    .ProfileSkillServices{
+        width: 100%;
+        max-width: calc(100% - 60px);
+    }
+
+    .ProfileApplicationNumbers {
+        margin: 8px 0 0 55px;
+        padding: 6px 0 0 0;
+        border-top: 1px solid #eaeaea;
+    }
+
+    div.avatarWidget{
+        width: 80px !important;
+    }
+
+    .ProfileCardBody>div {
+        padding: 0 15px;
+    }
+
+    .avatarContainer {
+        width: 20px!important;
+    }
+
+    .MsgCount {
+        width: 72px!important;
+    }
+
+    .MsgThreadContent {
+        max-width: calc(100% - 152px);
+    }
+
+    .ProfileConversation .ProfileConversationWidget li.myConversationContainer, .ProfileConversation .ProfileConversationWidget li.mySPContainer {
+        padding: 15px;
+    }
+
+    .mySPContent{
+        display: block;
+    }
+    .requestNameContent.Request {
+        display: block;
+        text-align: center;
+        padding: 15px 20px 0 20px;
+        order: 0;
+    }
+
+    .SPAvatarWidget{
+        float: left;
+    }
+
+    .SPThreadContent{
+        width: calc(100% - 80px);
+    }
+
+    .SPCount{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        height: 25px;
+        margin: 25px 0 0 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .SPCount .SPRate, .SPFavouriteIcon{
+        display: block;
+        margin: 0 auto;
+        bottom: 0;
+    }
+
+    .ProfileConversationWidget.ServiceProvider {
+        height: auto;
+    }
+
+    .ProfileConversationWidget {
+        height: auto;
+    }
+
+    .LeftPostedBy .PostedByImageContainer:first-child{
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .LeftPostedBy .PostedByImageContainer{
+        width: 33.33%;
+        display: flex;
+        display: -moz-flex;
+        justify-content: center;
+    }
+
+    div.ServiceTypesSlider.Summary {
+        flex-direction: inherit;
+    }
+
+    .hiddenScreen {
+        width: 100%;
+    }
+
+    div.mainProfileCard{
+        margin: 0 0 20px 0;
+    }
+
+    .AvailabilityWidget .SPAvailWidget .Available, .AvailabilityWidget .SPAvailWidget .trueAvailable{
+        margin: 0 5px 15px !important;
+    }
+}
+
+.flexSpan {
+    display: flex !important;
+}

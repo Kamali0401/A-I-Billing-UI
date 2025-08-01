@@ -1,0 +1,29 @@
+.react-floating-label-input label{
+    width: auto!important;
+}
+
+.react-floating-label-input > div{
+    padding-left: 0px !important;
+    border-bottom: 1px solid #3c1053 !important;
+}
+
+/* input::-webkit-datetime-edit{ color: transparent; } */
+div.Select-input > input{
+    max-width: 300px!important;
+    overflow: hidden;
+}
+ScreenCover{display: flex;}
+.screenCover{
+    height:100vh!important;
+    overflow:hidden;
+}
+.modal{display:flex;}
+input::-ms-clear, input::-ms-reveal {
+    display: none;
+}
+
+.p-r-l-30{
+    padding-left: 30px!important;
+    padding-right:30px!important; 
+}
+.zh{z-index: 9999!important;}

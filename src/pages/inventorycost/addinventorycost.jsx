@@ -10,7 +10,18 @@ import { fetchInventoryCostListReq } from "../../api/inventoryCostApi/inventoryC
 const AddInventoryCostModal = ({ show, handleClose, onSubmit, inventorycost }) => {
   const dispatch = useDispatch();
   const username = localStorage.getItem("username") || "";
-
+const resetForm = () => {
+  setForm({
+      id: 0,
+    itemId: 0,
+    cost: "",
+    createdBy: "",
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
   const [form, setForm] = useState({
     id: 0,
     itemId: 0,
@@ -120,7 +131,7 @@ const AddInventoryCostModal = ({ show, handleClose, onSubmit, inventorycost }) =
   };
   
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{inventorycost ? "Edit Inventory Cost" : "Add New Inventory Cost"}</Modal.Title>
       </Modal.Header>
@@ -171,7 +182,7 @@ const AddInventoryCostModal = ({ show, handleClose, onSubmit, inventorycost }) =
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit} disabled={loading}>

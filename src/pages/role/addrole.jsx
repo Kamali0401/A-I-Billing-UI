@@ -7,6 +7,18 @@ import Swal from "sweetalert2";
 
 const AddRoleModal = ({ show, handleClose, onSubmit, role }) => {
   const dispatch = useDispatch();
+ const resetForm = () => {
+  setForm({
+     role: "",
+     createdBy: localStorage.getItem("username") || "",
+   
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
+
   const [form, setForm] = useState({
     role: "",
     createdBy: "",
@@ -57,7 +69,7 @@ const AddRoleModal = ({ show, handleClose, onSubmit, role }) => {
       }
 
       onSubmit();
-      handleClose();
+      handleModalClose();
     } catch (err) {
         console.error("Error in submit:", err);
         console.error("Error message:", err?.errorMsg || err?.message || "No error message");
@@ -77,7 +89,7 @@ const AddRoleModal = ({ show, handleClose, onSubmit, role }) => {
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{role ? "Edit Role" : "Add New Role"}</Modal.Title>
       </Modal.Header>
@@ -109,7 +121,7 @@ const AddRoleModal = ({ show, handleClose, onSubmit, role }) => {
         </div> */}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

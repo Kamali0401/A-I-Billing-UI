@@ -15,8 +15,24 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
   //   setForm((prevForm) => ({ ...prevForm, RoleId: selectedValue }));
   // };
   
-  
-
+  const resetForm = () => {
+  setForm({
+    
+    name: "",
+    RoleId: 0,
+    phoneNo: "",
+    address: "",
+    locality: "",
+    info: "",
+    userName: "",
+    password: "",
+    createdBy: localStorage.getItem("username") || "",
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
   useEffect(() => {
     debugger;
     fetchRoleReq() 
@@ -48,7 +64,8 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
   });
 
   
-  useEffect(() => {
+ useEffect(() => {
+  if (show) {
     if (user) {
       setForm({
         id: user.id || 0,
@@ -58,26 +75,15 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
         address: user.address || "",
         locality: user.locality || "",
         info: user.info || "",
-        userName: user.userName || "", 
-        password: user.password || "", 
+        userName: user.userName || "",
+        password: user.password || "",
         createdBy: user.createdBy || "",
       });
     } else {
-      
-      setForm({
-        id: 0,
-        name: "",
-        RoleId: 0,
-        phoneNo: "",
-        address: "",
-        locality: "",
-        info: "",
-        userName: "", 
-        password: "",
-        createdBy: localStorage.getItem("username") || "",
-      });
+      resetForm();
     }
-  }, [user]);
+  }
+}, [user, show]);
     
 
   const handleChange = (e) => {
@@ -132,7 +138,7 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
   
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{user ? "Edit User" : "Add New User"}</Modal.Title>
       </Modal.Header>
@@ -227,6 +233,7 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
           <label>Username</label>
           <input
             type="text"
+            autoComplete="off"
             className="form-control"
             name="userName"
             value={form.userName}
@@ -237,6 +244,7 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
           <label>Password</label>
           <input
             type="password"
+            autoComplete="new-password"
             className="form-control"
             name="password"
             value={form.password}
@@ -246,7 +254,7 @@ const AddUserModal = ({ show, handleClose, onSubmit, user }) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

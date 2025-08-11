@@ -43,6 +43,19 @@ const AddTableModal = ({ show, handleClose, onSubmit, table }) => {
   const dispatch = useDispatch();
   const { tableTypes, loading, error } = useFetchTableTypes();
   const username = localStorage.getItem("username") || "System";
+ const resetForm = () => {
+  setForm({
+     tableCode: "",
+    noofSeats:"",
+    tablename: "",
+    createdBy: "",
+   
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
 
   const [form, setForm] = useState({
     tableCode: "",
@@ -126,7 +139,7 @@ const AddTableModal = ({ show, handleClose, onSubmit, table }) => {
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{table ? "Edit Table Details" : "Add New Table"}</Modal.Title>
       </Modal.Header>
@@ -178,7 +191,7 @@ const AddTableModal = ({ show, handleClose, onSubmit, table }) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

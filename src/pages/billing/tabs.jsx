@@ -51,10 +51,31 @@ const Tabs = ({
   const [restaurantdata, setRestaurantdata] = useState(JSON.parse(localStorage.getItem("restaurantData")) || [{}]);
   const [discountId, setDiscountId] = useState(0);
   const [noofPersonCount, setnoofPersonCount] = useState(0);
- //console.log( seatId," seatId,");
+ console.log( seatId," seatId,");
   const billRef = useRef();
   const kotRef = useRef();
   const [holdItems, setHoldItems] = useState([]);
+  const [showRemainingMessage, setShowRemainingMessage] = useState(true);  
+const [remainingAmount, setRemainingAmount] = useState(0);
+const [enteredAnyAmount, setEnteredAnyAmount] = useState(false);
+const updateRemainingAmount = (updatedSplitDetails) => {
+  const totalEntered =
+    (Number(updatedSplitDetails.Cash) || 0) +
+    (Number(updatedSplitDetails.Card) || 0) +
+    (Number(updatedSplitDetails.Upi) || 0);
+ 
+  const grand = Number(totals?.grandTotal || 0);
+  const balance = grand - totalEntered;
+ 
+  setRemainingAmount(balance);
+   const anyValueEntered = Object.values(updatedSplitDetails).some(
+    (val) => Number(val) > 0
+  );
+  setEnteredAnyAmount(anyValueEntered);
+  if (anyValueEntered) {
+    setShowRemainingMessage(true);
+  }
+};
 
   const [showSplitModal, setShowSplitModal] = useState(false);
   const [splitDetails, setSplitDetails] = useState({
@@ -81,12 +102,28 @@ const anyItemIsCheckedOut = orderDetails?.itemDetails?.some(item => item.status 
 
 const allItemsReadyForBilling = allItemsAreActive && anyItemIsCheckedOut;
   const allItemsReadyForBillingPrint = orderDetails?.billId > 0 && allItemsReadyForBilling;
-useEffect(() => {
+/*useEffect(() => {
   if (seatId) {
+    debugger;
     const seatCount = seatId.split(',').filter(Boolean).length;
     setnoofPersonCount(seatCount);
   }
+}, [seatId]);*/
+useEffect(() => {
+  debugger;
+  if (seatId !== undefined && seatId !== null) {
+    let seatCount = 0;
+
+    if (typeof seatId === "string" && seatId.includes(",")) {
+      seatCount = seatId.split(",").filter(Boolean).length;
+    } else {
+      seatCount = (seatId); // Handles both string and number
+    }
+
+    setnoofPersonCount(seatCount);
+  }
 }, [seatId]);
+
 useEffect(() => {
   debugger;
   if (orderDetails?.itemDetails?.length > 0) {
@@ -393,7 +430,7 @@ debugger;
     // }
     const parameters = {
       orderId: orderDetails?.orderId || 0,
-      SeatId:seatId ||orderDetails?.seatId,
+      SeatId:(seatId ||orderDetails?.seatId).toString(),
       itemDetails: updatedFormData,
       waiterId: localStorage.getItem("userid"),
       tableId: tableId || orderDetails?.tableId,
@@ -403,7 +440,7 @@ debugger;
       customerPhoneNo: userFormData.mobile || orderDetails.customerPhoneNo,
       customerLocality: userFormData.locality || orderDetails.customerLocality,
       customerInfo: userFormData.info || orderDetails.customerInfo,
-      orderType: "Dine-In",
+      orderType: activeTab,
     };
 
     try {
@@ -422,6 +459,7 @@ debugger;
           confirmButtonText: "OK",
         }).then(async (result) => {
           if (result.isConfirmed) {
+            debugger;
             // Fetch updated order details when the user clicks OK
             const updatedResponse = await publicAxios.get(
               `orderDetail/${data1?.orderId}`
@@ -550,7 +588,7 @@ debugger;
 
     const otherCharges = (serviceamount || 0) + (parcelamount || 0);
 
-    const subTotal = orderItemTotal + additionalItemTotal + otherCharges;
+    const subTotal = parseFloat(orderItemTotal + additionalItemTotal + otherCharges).toFixed(2);
     let totalDiscount = 0;
     if (String(discountValue).includes("%")) {
       debugger;
@@ -698,159 +736,160 @@ debugger;
       </div>
     )}
 
-    {["billing", "user"].includes(activeSection) && (
-      <div className="tab-content">
-        {isLoading ? (
-          // Spinner overlay or content while loading
-          <div className="loading-container">
-            <div className="spinner" />
-            <p>Loading order details...</p>
-          </div>
-        ) : (
-          <div className="order-list">
-            <div className="order-list-header grid-row">
-              <div className="left">ITEMS</div>
-              <div className="left">COMMENTS </div>
-              <div className="center">CHECK ITEMS</div>
-              <div className="center">QTY.</div>
-              <div className="right">PRICE</div>
-            </div>
+   {["billing", "user"].includes(activeSection) && (
+  <div className="tab-content">
+    {isLoading ? (
+      <div className="loading-container">
+        <div className="spinner" />
+        <p>Loading order details...</p>
+      </div>
+    ) : (
+      <div className="order-list">
+        <div className="order-list-header grid-row">
+          <div className="left">ITEMS</div>
+          <div className="left">INSTRUCTIONS</div>
+          <div className="center">CHECK ITEMS</div>
+          <div className="center">QTY.</div>
+          <div className="right">PRICE</div>
+        </div>
 
-            {(orderDetails?.itemDetails || [])?.length > 0 ? (
-              (orderDetails?.itemDetails || [])
-                .filter((item) => item.isActive && item.qty > 0)
-                .map((item, index) => {
-                  const isChecked =
-                    item.status === "Food Received" ||
-                    item.status === "Check Out";
-                  return (
-                    <div
-                      className={`order-item grid-row ${item.isKOT ? "is-kot-item" : ""
-                        }`}
-                      key={item.id}
-                    >
-                      <div className="order-name">
-                        <i
-                          className={`bx bx-x ${item.status !== "Hold" ? "disabled" : ""
-                            }`}
-                          onClick={() => {
-                            const idToDelete = item.id;
-                            setOrderDetails((prevDetails) => ({
-                              ...prevDetails,
-                              itemDetails: prevDetails.itemDetails.map((detail) =>
-                                detail.id === idToDelete
-                                  ? { ...detail, isActive: false, qty: 0 }
-                                  : detail
-                              ),
-                            }));
-                          }}
-                          style={{
-                            display:
-                              item.status === "Hold" ? "inline-block" : "none",
-                          }}
-                        />
-                        <span>{item.itemName}</span>
-                      </div>
-                      
-  {/* ✅ New Comment Field */}
-  <div className="left">
-    <input
-      type="text"
-      placeholder="Comments (e.g., extra spicy)"
-      className="form-control"
-      value={item.itemComment || ""}
-      onChange={(e) => {
-        const commentText = e.target.value;
-        setOrderDetails((prevDetails) => ({
-          ...prevDetails,
-          itemDetails: prevDetails.itemDetails.map((detail) =>
-            detail.id === item.id
-              ? { ...detail, itemComment: commentText }
-              : detail
-          ),
-        }));
-      }}
-      disabled={item.status !== "Hold"} // Optional: only editable when item is in Hold
-    />
-  </div>
-                      <div className="center">
-                        <input
-                          type="checkbox"
-                          checked={isChecked}
-                          onChange={(e) =>
-                            handleCheckboxChange(item, e.target.checked)
-                          }
-                        />
-                      </div>
-                      <div className="qty">
-                        <button
-                          onClick={() => {
-                            setOrderDetails((prevDetails) => {
-                              const updatedDetails = {
-                                ...prevDetails,
-                                itemDetails: prevDetails.itemDetails.map(
-                                  (detail) =>
-                                    detail.id === item.id
-                                      ? {
-                                        ...detail,
-                                        qty: Math.max(
-                                          (detail.qty || 0) - 1,
-                                          0
-                                        ),
-                                        isActive:
-                                          Math.max(
-                                            (detail.qty || 0) - 1,
-                                            0
-                                          ) > 0,
-                                      }
-                                      : detail
-                                ),
-                              };
-                              return updatedDetails;
-                            });
-                          }}
-                          disabled={item.status !== "Hold"}
-                        >
-                          -
-                        </button>
-                        <input
-                          type="number"
-                          readOnly
-                          value={item.qty}
-                          disabled={item.status !== "Hold"}
-                        />
-                        <button
-                          onClick={() => {
-                            setOrderDetails((prevDetails) => ({
+        {(() => {
+          const anyItemIsCheckedOut = orderDetails?.itemDetails?.some(
+            (item) => item.status === "Check Out"
+          );
+
+          return (orderDetails?.itemDetails || []).length > 0 ? (
+            (orderDetails.itemDetails || [])
+              .filter((item) => item.isActive && item.qty > 0)
+              .map((item) => {
+                const isChecked =
+                  item.status === "Food Received" || item.status === "Check Out";
+
+                return (
+                  <div
+                    className={`order-item grid-row ${item.isKOT ? "is-kot-item" : ""}`}
+                    key={item.id}
+                  >
+                    {/* Item Name and Delete Icon */}
+                    <div className="order-name">
+                      <i
+                        className={`bx bx-x ${item.status !== "Hold" ? "disabled" : ""}`}
+                        onClick={() => {
+                          const idToDelete = item.id;
+                          setOrderDetails((prevDetails) => ({
+                            ...prevDetails,
+                            itemDetails: prevDetails.itemDetails.map((detail) =>
+                              detail.id === idToDelete
+                                ? { ...detail, isActive: false, qty: 0 }
+                                : detail
+                            ),
+                          }));
+                        }}
+                        style={{
+                          display: item.status === "Hold" ? "inline-block" : "none",
+                        }}
+                      />
+                      <span>{item.itemName}</span>
+                    </div>
+
+                    {/* Instructions Input */}
+                    <div className="left">
+                      <input
+                        type="text"
+                        placeholder="Instructions (e.g., extra spicy)"
+                        className="form-control"
+                        value={item.itemComment || ""}
+                        style={{ fontSize: "12px" }}
+                        onChange={(e) => {
+                          const commentText = e.target.value;
+                          setOrderDetails((prevDetails) => ({
+                            ...prevDetails,
+                            itemDetails: prevDetails.itemDetails.map((detail) =>
+                              detail.id === item.id
+                                ? { ...detail, itemComment: commentText }
+                                : detail
+                            ),
+                          }));
+                        }}
+                        disabled={item.status !== "Hold"}
+                      />
+                    </div>
+
+                    {/* Checkbox */}
+                    <div className="center">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) =>
+                          handleCheckboxChange(item, e.target.checked)
+                        }
+                        disabled={anyItemIsCheckedOut}
+                      />
+                    </div>
+
+                    {/* Quantity Controls */}
+                    <div className="qty">
+                      <button
+                        onClick={() => {
+                          setOrderDetails((prevDetails) => {
+                            const updatedDetails = {
                               ...prevDetails,
                               itemDetails: prevDetails.itemDetails.map((detail) =>
                                 detail.id === item.id
                                   ? {
-                                    ...detail,
-                                    qty: (detail.qty || 0) + 1,
-                                  }
+                                      ...detail,
+                                      qty: Math.max((detail.qty || 0) - 1, 0),
+                                      isActive: Math.max((detail.qty || 0) - 1, 0) > 0,
+                                    }
                                   : detail
                               ),
-                            }));
-                          }}
-                          disabled={item.status !== "Hold"}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <div className="right">
-                        ₹{(item.price * item.qty).toFixed(2)}
-                      </div>
+                            };
+                            return updatedDetails;
+                          });
+                        }}
+                        disabled={item.status !== "Hold"}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        readOnly
+                        value={item.qty}
+                        disabled={item.status !== "Hold"}
+                      />
+                      <button
+                        onClick={() => {
+                          setOrderDetails((prevDetails) => ({
+                            ...prevDetails,
+                            itemDetails: prevDetails.itemDetails.map((detail) =>
+                              detail.id === item.id
+                                ? { ...detail, qty: (detail.qty || 0) + 1 }
+                                : detail
+                            ),
+                          }));
+                        }}
+                        disabled={item.status !== "Hold"}
+                      >
+                        +
+                      </button>
                     </div>
-                  );
-                })
-            ) : (
-              <div className="empty-order">No items in the order.</div>
-            )}
-          </div>
-        )}
+
+                    {/* Price */}
+                    <div className="right">
+                      ₹{(item.price * item.qty).toFixed(2)}
+                    </div>
+                  </div>
+                );
+              })
+          ) : (
+            <div className="empty-order">No items in the order.</div>
+          );
+        })()}
       </div>
     )}
+  </div>
+)}
+
 
     {["billing", "user"].includes(activeSection) && (
       <div className="sticky-footer"
@@ -1074,7 +1113,7 @@ debugger;
                   <div class="charge-item">
                     <span class="text-left">Round Off </span>
                     <span class="text-right">
-                      ₹
+                      
                       {orderDetails.billId > 0
                         ? orderDetails.roundOff
                         : totals.roundOff}
@@ -1115,56 +1154,82 @@ debugger;
                 <Modal show={showSplitModal} onHide={() => {
                   setShowSplitModal(false);
                   resetSplitDetails();
+                  setShowRemainingMessage(false);
+                  setRemainingAmount(0);
+                  setPaymentMethod("Cash");
                 }} centered>
                   <Modal.Header closeButton>
                     <Modal.Title>Split Payment</Modal.Title>
                   </Modal.Header>
  
-                  <Modal.Body>
-                    <div>
-                      <p><strong>Grand Total: ₹{totals?.grandTotal}</strong></p>
+                 <Modal.Body>
+  <div>
+    <p><strong>Grand Total: ₹{totals?.grandTotal}</strong></p>
  
-                      <div className="modal-items">
-                        {["Cash", "Card", "Upi"].map((method, index) => (
-                          <div key={index} className="modal-item d-flex align-items-center mb-2">
-                            <label className="me-2" style={{ width: "60px" }}>{method}</label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              placeholder="0"
-                              style={{ width: "150px" }}
-                              value={splitDetails[method] || ""}
-                              onChange={(e) =>
-                                setSplitDetails({
-                                  ...splitDetails,
-                                  [method]: e.target.value,
-                                })
-                              }
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </Modal.Body>
+    <div className="modal-items">
+      {["Cash", "Card", "Upi"].map((method, index) => (
+        <div key={index} className="modal-item d-flex align-items-center mb-2">
+          <label className="me-2" style={{ width: "60px" }}>{method}</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="0"
+            style={{ width: "150px" }}
+            value={splitDetails[method] || ""}
+            onChange={(e) => {
+              const updated = {
+                ...splitDetails,
+                [method]: e.target.value,
+              };
+              setSplitDetails(updated);
+              updateRemainingAmount(updated);
+            }}
+          />
+        </div>
+      ))}
+ 
+     {enteredAnyAmount && remainingAmount !== 0 && showRemainingMessage && (
+  remainingAmount > 0 ? (
+    <div style={{ color: "orange", marginTop: "10px" }}>
+      Remaining: ₹{remainingAmount}
+    </div>
+  ) : (
+    <div style={{ color: "red", marginTop: "10px" }}>
+      Amount exceeds Grand Total by ₹{Math.abs(remainingAmount)}
+    </div>
+  )
+)}
+    </div>
+  </div>
+</Modal.Body>  
+ 
  
                   <Modal.Footer>
-                    <Button
-                      variant="secondary"
-                      onClick={() => {
-                        setShowSplitModal(false);
-                        resetSplitDetails(); // clear values
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                    <Button variant="primary" onClick={() => {
-                      handleSplitSubmit();
-                      resetSplitDetails();
-                    }}
-                    >
-                      Continue
-                    </Button>
-                  </Modal.Footer>
+  <Button
+    variant="secondary"
+    onClick={() => {
+      setShowSplitModal(false);        
+      resetSplitDetails();            
+      setPaymentMethod("Cash");  
+      setShowRemainingMessage(false);  
+      setRemainingAmount(0);    
+       
+    }}
+  >
+    Cancel
+  </Button>
+ 
+  <Button
+    variant="primary"
+    onClick={() => {
+      handleSplitSubmit();             // Submit the entered values
+      setShowRemainingMessage(true);  // Just hide message, keep values
+    }}
+  >
+    Continue
+  </Button>
+</Modal.Footer>
+ 
                 </Modal>
  
               </div>

@@ -37,26 +37,32 @@ export default profileSlice.reducer;
 // Action to update a profile
 export const updateProfile = (data) => async (dispatch) => {
   try {
-    dispatch(setLoading()); // Set loading before making the API request
-    const response = await updateProfileReq(data); // Call API to update profile
+    dispatch(setLoading()); // Start loading
+    const response = await updateProfileReq(data); // Call update API
 
     if (!response.error) {
-      await dispatch(fetchProfileList()); // Fetch updated list of profiles after updating
+      // Show success alert and wait for user action
       Swal.fire({
         text: "Profile updated successfully!",
         icon: "success",
+        confirmButtonText: "OK",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await dispatch(fetchProfileList()); // Fetch after OK click
+        }
       });
     } else {
-      throw new Error(response.errorMsg); // Handle error if API fails
+      throw new Error(response.errorMsg);
     }
   } catch (error) {
-    dispatch(setError()); // Handle error in Redux state
+    dispatch(setError());
     Swal.fire({
       text: error.message || "Error! Try Again!",
       icon: "error",
     });
   }
 };
+
 
 
 // Action to fetch the profile list

@@ -32,9 +32,9 @@ debugger;
         <p style={{ textAlign: "center", margin: 0 }}>
           {`Table: ${billData?.tableCatagory}/${billData?.tableCode}`}
         </p>
-
+         
         <hr />
-
+<p>Waiter: {billData?.waiterName || ""}</p>
         <table width="100%">
           <thead>
             <tr>
@@ -50,6 +50,14 @@ debugger;
                   item.status === "KOT Generated" &&
                    currentKotPrintId.includes(item.itemId)
               )
+               // Keep only the latest item per itemId (highest id)
+    .reduce((acc, item) => {
+      const existing = acc.find((x) => x.itemId === item.itemId);
+      if (!existing || existing.id < item.id) {
+        return [...acc.filter((x) => x.itemId !== item.itemId), item];
+      }
+      return acc;
+    }, [])
               .map((item, index) => (
                 <tr key={index}>
           <td style={{ textAlign: "left" }}>

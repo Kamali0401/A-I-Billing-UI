@@ -411,6 +411,8 @@ body {
   display: flex;
   flex-direction: column;
   border-top: 1px solid #ccc;
+   overflow-y: auto;        /* Enables scrolling */
+  max-height: 500px;
 }
 
 .order-list-header {
@@ -1618,6 +1620,48 @@ body {
     height: auto; /* Reset the height for mobile view */
   }
 }
+
+@media (max-width: 760px) {
+  .grid-row {
+    grid-template-columns: 1fr; /* Stack vertically */
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .order-name,
+  .qty,
+  .right,
+  .center,
+  .left {
+    text-align: left;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .qty {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .qty button {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+
+  .order-item input[type="text"],
+  .order-item input[type="number"] {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .order-list-header {
+    display: none; /* Hide header row on small screens */
+  }
+   .order-list {
+    max-height: 300px;     /* Lower height for mobile view */
+  }
+}
 .grid-row {
   display: grid;
   grid-template-columns:  2fr 2fr 1fr 1fr 1fr; /* You can adjust as needed */
@@ -1626,11 +1670,11 @@ body {
   padding: 8px 1rem;
 }
 
-.order-list {
+/*.order-list {
   display: flex;
   flex-direction: column;
   border-top: 1px solid #ccc;
-}
+}*/
 
 .order-list-header {
   background: #f8f8f8;
@@ -1736,6 +1780,8 @@ body {
 .total span {
   color: #ff0000;
 }
+
+
 
 .radio-group {
   display: flex;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FaEdit } from "react-icons/fa";
-
+ 
 const RestaurantProfileForm = ({ data, onEdit }) => {
   const {
     restaurantName,
@@ -15,7 +15,8 @@ const RestaurantProfileForm = ({ data, onEdit }) => {
     gstNo,
     cgst,
     sgst,
-    
+    fssaiLicNo,
+   
   } = data;
 const roleId = localStorage.getItem("roleid");
   return (
@@ -24,7 +25,7 @@ const roleId = localStorage.getItem("roleid");
         <div className="d-flex justify-content-between align-item-baseline">
           <div>
           <h4 className="card-title section-title">Restaurant Profile</h4>
-
+ 
           <p
   style={{
     fontSize: "1.1rem",
@@ -39,8 +40,8 @@ const roleId = localStorage.getItem("roleid");
 >
   Welcome <strong>{restaurantName}</strong>, here is the restaurant profile information.
 </p>
-
-
+ 
+ 
           </div>
            {roleId !== "5" && (
           <div>
@@ -97,7 +98,11 @@ const roleId = localStorage.getItem("roleid");
                 <th scope="row">SGST%:</th>
                 <td>{sgst || "-"}</td>
               </tr>
-              
+              <tr>
+                <th scope="row">FSSAI Lic No:</th>
+                <td>{fssaiLicNo || "-"}</td>
+              </tr>
+             
             </tbody>
           </table>
         </div>
@@ -105,9 +110,9 @@ const roleId = localStorage.getItem("roleid");
     </CardContainer>
   );
 };
-
+ 
 export default RestaurantProfileForm;
-
+ 
 const CardContainer = styled.div`
   font-family: "GT-Walsheim" !important;
   p,
@@ -128,7 +133,7 @@ const CardContainer = styled.div`
 .justify-content-between {
   justify-content: space-between;
 }
-
+ 
 .align-items-center {
   align-items: center;
 }

@@ -48,6 +48,7 @@ export const fetchProfileByIdReq = async (userId) => {
 // Update profile
 export const updateProfileReq = async (data) => {
   try {
+    debugger;    
     const res = await publicAxios.put(`${ApiKey.RestaurantProfile}`, data);
     const msg = res?.data?.message;
     const _data = res?.data;

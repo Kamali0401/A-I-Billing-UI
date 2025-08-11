@@ -19,10 +19,12 @@ const RestaurantProfileModal = ({ isOpen, onClose, data, onSave }) => {
   };
 
   const handleUpdate = (formState) => {
+    debugger;
     dispatch(updateProfile(formState)); // Dispatch async action
   };
 
   const handleSubmit = (e) => {
+    debugger;
     e.preventDefault();
     onSave(formState); // Call the onSave callback passed as prop
     handleUpdate(formState); // Dispatch the updateProfile action
@@ -48,6 +50,7 @@ const RestaurantProfileModal = ({ isOpen, onClose, data, onSave }) => {
             "gstNo",
             "cgst",
             "sgst",
+            "fssaiLicNo"
           ].map((field) => (
             <Form.Group className="mb-3" key={field}>
               <Form.Label>{field}</Form.Label>

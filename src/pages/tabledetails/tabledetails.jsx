@@ -80,7 +80,7 @@ const roleId = localStorage.getItem("roleid");
     acc[tableCatagory].push(table);
     return acc;
   }, {});
-  const handleTableClick = async (table) => {
+  const handleTableClick = async (table,count = 0) => {
     debugger;
 const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
   const tablesWithOrders = table.filter((table) => table.orderId !== 0);
@@ -91,6 +91,7 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
   //console.log(seatIds, "seat");
 
   if (tablesWithNoOrders.length > 0) {
+    
     tablesWithNoOrders.forEach((table) => {
       navigate(`${routePath.main}/${routePath.billing}`, {
         state: {
@@ -112,7 +113,7 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
         navigate(`${routePath.main}/${routePath.billing}`, {
           state: {
             orderDetails: data,
-            seatId: seatIds, // ✅ Use here also
+            seatId: count, // ✅ Use here also
           },
         });
       } catch (error) {
@@ -353,14 +354,14 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
               >
                 <strong>{displayLabel}</strong>
 
-                {representativeTable.status !== "Blank Table" &&
+                {/*{representativeTable.status !== "Blank Table" &&
                   OrderDetails?.itemDetails?.length > 0 && (
                     <div className="price-time">
                       ₹ {OrderDetails?.subTotal?.toFixed(2) || ""}
                     </div>
-                  )}
+                  )}*/}
               </div>
-              {OrderDetails?.itemDetails?.length > 0 && (
+             {/* {OrderDetails?.itemDetails?.length > 0 && (
                 <div style={{ display: "none" }}>
                   <BillPrint
                     ref={billprintRef}
@@ -377,7 +378,7 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
                     disable={printloading}
                   />
                 </div>
-              )}
+              )}*/}
             </div>
           );
         })}
@@ -440,7 +441,7 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
             <div
               key={groupedTable.id}
               className={`selectable ${getStatusColorClass(groupedTable.status)}`}
-              onClick={() => handleTableClick([groupedTable])}
+              onClick={() => handleTableClick([groupedTable], groupedTable.count)}
               style={{ cursor: "pointer", padding: "10px", marginBottom: "10px" }}
             >
               {displayLabel}

@@ -8,6 +8,18 @@ import Swal from "sweetalert2";
 
 const AddTabModal = ({ show, handleClose, onSubmit, table }) => {
   const dispatch = useDispatch();
+   const resetForm = () => {
+  setForm({
+     name: "",
+     createdBy: localStorage.getItem("username") || "",
+   
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
+
   const [form, setForm] = useState({
     name : "",
     createdBy: "",
@@ -79,7 +91,7 @@ const AddTabModal = ({ show, handleClose, onSubmit, table }) => {
   
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{table ? "Edit Table Type" : "Add New Table Type"}</Modal.Title>
       </Modal.Header>
@@ -99,7 +111,7 @@ const AddTabModal = ({ show, handleClose, onSubmit, table }) => {
         
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

@@ -11,6 +11,19 @@ const AddDiscountModal = ({ show, handleClose, onSubmit, discount }) => {
   const dispatch = useDispatch();
   const username = localStorage.getItem("username") || "";
 const maxDate = dayjs().format('YYYY-MM-DD');
+const resetForm = () => {
+  setForm({
+     validUpto:"",
+    discountCode: "",
+    percentage: "",
+    discountType: "",
+    createdBy: "",
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
   const [form, setForm] = useState({
     validUpto:"",
     discountCode: "",
@@ -105,7 +118,7 @@ const maxDate = dayjs().format('YYYY-MM-DD');
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{discount ? "Edit Discount" : "Add New Discount"}</Modal.Title>
       </Modal.Header>
@@ -162,7 +175,7 @@ const maxDate = dayjs().format('YYYY-MM-DD');
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

@@ -8,7 +8,21 @@ import Swal from "sweetalert2";
 const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
   const dispatch = useDispatch();
   const username = localStorage.getItem("username") || "";
-
+  const resetForm = () => {
+  setForm({
+      itemCode: "",
+    category: "",
+    subCategory: "",
+    itemName: "",
+    isVeg: false,
+    description: "",
+    createdBy: "",
+  });
+};
+const handleModalClose = () => {
+  resetForm(); 
+  handleClose(); 
+};
   const [form, setForm] = useState({
     itemCode: "",
     category: "",
@@ -56,7 +70,7 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
   const handleSubmit = async () => {
     const { itemCode, category, subCategory, itemName, description, createdBy } = form;
 
-    if (!itemCode || !category || !subCategory || !itemName || !createdBy) {
+    if (!itemCode || !category || !subCategory || !itemName || !description || !createdBy) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",
@@ -82,21 +96,21 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
         // Add new inventory
         await addNewInventory(parameters, dispatch);
       }
-
       onSubmit(); // This will trigger the parent component to refresh the list or take other actions
       handleClose(); // Close the modal
     } catch (err) {
-      console.error("Error in submit:", err?.message || err);
-      Swal.fire({
-        title: "Submission Failed",
-        text: err?.message || "Something went wrong",
-        icon: "error",
-      });
-    }
+  console.error("Error in submit:", err);
+  Swal.fire({
+    title: "Submission Failed",
+    text: err?.errorMsg || err?.message || "Something went wrong",
+    icon: "error",
+  });
+}
+
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>{inventory ? "Edit Inventory" : "Add New Inventory"}</Modal.Title>
       </Modal.Header>
@@ -169,7 +183,7 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleModalClose}>
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>

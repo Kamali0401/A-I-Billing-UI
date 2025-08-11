@@ -56,7 +56,7 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
   const handleSubmit = async () => {
     const { itemCode, category, subCategory, itemName, description, createdBy } = form;
 
-    if (!itemCode || !category || !subCategory || !itemName || !createdBy) {
+    if ( !category || !subCategory || !itemName || !createdBy) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",
@@ -66,7 +66,7 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
 
     try {
       const parameters = {
-        itemCode: form.itemCode,
+       // itemCode: form.itemCode,
         category: form.category,
         subCategory: form.subCategory,
         itemName: form.itemName,
@@ -77,7 +77,7 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
 
       if (inventory) {
         // Update inventory
-        await updateInventory({ ...parameters, id: inventory.id }, dispatch);
+        await updateInventory({ ...parameters, id: inventory.id ,itemCode:inventory.itemCode}, dispatch);
       } else {
         // Add new inventory
         await addNewInventory(parameters, dispatch);
@@ -108,7 +108,9 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
             className="form-control"
             name="itemCode"
             value={form.itemCode}
+            placeholder="Non editable"
             onChange={handleChange}
+            readOnly
           />
         </div>
 

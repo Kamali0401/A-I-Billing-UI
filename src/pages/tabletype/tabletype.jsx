@@ -74,7 +74,7 @@ const roleId = localStorage.getItem("roleid");
       <div className="list-container table-list">
         <div className="list-header">
           <h4>Table Type</h4>
-           {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
            
           <button onClick={handleAddtable}>+ Add Table Type</button>
            )}
@@ -104,7 +104,7 @@ const roleId = localStorage.getItem("roleid");
             <tr>
               <th>ID</th>
               <th>Table Type</th>
-               {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
               <th>Actions</th>
                )}
             </tr>
@@ -115,8 +115,8 @@ const roleId = localStorage.getItem("roleid");
                 <tr key={table.id}>
                   <td data-label="Id">{index + 1}</td>
                   <td data-label="Name">{table.name}</td>
-                   {roleId !== "5" && (
-                  <td data-label="Actions" className="action-buttons">
+{(roleId !== "2" && roleId !== "3") && (
+                    <td data-label="Actions" className="action-buttons">
                     <button className="btn-edit" onClick={() => handleEdit(table)}>Edit</button>
                     <button className="btn-delete" onClick={() => handleDelete(table.id)}>Delete</button>
                   </td>

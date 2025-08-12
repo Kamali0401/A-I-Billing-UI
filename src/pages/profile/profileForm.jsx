@@ -43,7 +43,7 @@ const roleId = localStorage.getItem("roleid");
  
  
           </div>
-           {roleId !== "5" && (
+{(roleId !== "2" || roleId !== "3") && (
           <div>
             <button className="btn btn-dark text-white" onClick={() => onEdit(data)}>
               <FaEdit color="#fff" size={14} /> Edit

@@ -76,7 +76,7 @@ const roleId = localStorage.getItem("roleid");
     <div className="list-container">
       <div className="list-header">
         <h4>Inventory Details</h4>
-         {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
         <button onClick={handleAddinventory}>+ Add Inventory</button>
          )}
       </div>
@@ -109,9 +109,10 @@ const roleId = localStorage.getItem("roleid");
             <th>Sub-Category</th>
             <th>Item</th>
             <th>Veg/Non-Veg</th>
-             {roleId !== "5" && (
-            <th>Actions</th>
-             )}
+            {(roleId !== "2" && roleId !== "3") && (
+  <th>Actions</th>
+)}
+
           </tr>
         </thead>
         <tbody>
@@ -125,7 +126,7 @@ const roleId = localStorage.getItem("roleid");
                 <td data-label="Type" style={{ color: inventory.isVeg ? "green" : "red", fontWeight: "bold" }}>
                   {inventory.isVeg ? "Veg" : "Non-Veg"}
                 </td>
-                 {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
                 <td data-label="Actions" className="action-buttons">
                   <button className="btn-edit" onClick={() => handleEdit(inventory)}>
                     Edit

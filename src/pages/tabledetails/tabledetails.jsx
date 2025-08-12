@@ -242,7 +242,7 @@ const tablesWithNoOrders = table.filter((table) => table.orderId === 0);
         <div className="d-flex gap-2">
           {/* <button className="t_btn">Delivery</button>
           <button className="t_btn">Pick Up</button> */}
-           {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
           <button className="t_btn" onClick={() => setShowModal(true)}>
             + Add Table
           </button>

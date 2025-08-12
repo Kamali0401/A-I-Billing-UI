@@ -1236,8 +1236,8 @@ debugger;
             )}
            
           <div className="button-group">
-            {localStorage.getItem("roleid") !== "2" && (
-  <>
+{localStorage.getItem("roleid") !== "4" && localStorage.getItem("roleid") !== "5" && (
+    <>
             <button
               className="action-button"
               onClick={handlebillpaid}

@@ -68,7 +68,7 @@ const handleModalClose = () => {
   };
 
   const handleSubmit = async () => {
-    const { itemCode, category, subCategory, itemName, description, createdBy } = form;
+    const { itemCode, category, subCategory, itemName, createdBy } = form;
 
 
     if ( !category || !subCategory || !itemName ) {
@@ -118,7 +118,9 @@ const handleModalClose = () => {
       </Modal.Header>
       <Modal.Body>
         <div className="mb-2">
-          <label>Item Code</label>
+          <label>
+          Item Code<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
@@ -126,45 +128,57 @@ const handleModalClose = () => {
             value={form.itemCode}
             placeholder="Non editable"
             onChange={handleChange}
+            maxLength={50}
             readOnly
           />
         </div>
 
         <div className="mb-2">
-          <label>Category</label>
+          <label>
+          Category<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="category"
             value={form.category}
             onChange={handleChange}
+            maxLength={150}
           />
         </div>
 
         <div className="mb-2">
-          <label>Sub Category</label>
+          <label>
+          Sub Category<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="subCategory"
             value={form.subCategory}
+            maxLength={150}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-2">
-          <label>Item Name</label>
+          <label>
+          Item Name<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="itemName"
             value={form.itemName}
+            maxLength={150}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-2">
-          <label>Description</label>
+          <label>
+          Description
+          </label>
           <textarea
             className="form-control"
             name="description"

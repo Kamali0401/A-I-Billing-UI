@@ -124,7 +124,9 @@ const handleModalClose = () => {
       </Modal.Header>
       <Modal.Body>
          <div className="mb-2">
-          <label>Valid UpTo</label>
+          <label>
+          Valid UpTo<span style={{ color: 'red' }}>*</span>
+         </label>
           <input
             type="date"
             className="form-control"
@@ -137,31 +139,37 @@ const handleModalClose = () => {
           />
         </div>
         <div className="mb-2">
-          <label>Discount Code</label>
+          <label>
+          Discount Code<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="discountCode"
             value={form.discountCode}
             onChange={handleChange}
+            maxLength={100}
           />
         </div>
 
         <div className="mb-2">
-          <label>Discount Type</label>
+          <label>
+          Discount Type<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="discountType"
             value={form.discountType}
             onChange={handleChange}
+            maxLength={200}
            
           />
         </div>
 
         <div className="mb-2">
           <label>
-            Discount Value{" "}
+            Discount Value<span style={{ color: 'red' }}>*</span>{" "}
             <small className="text-muted">(e.g., "10%" for percent or "10" for fixed amount)</small>
           </label>
           <input
@@ -170,6 +178,7 @@ const handleModalClose = () => {
             name="percentage"
             value={form.percentage}
             onChange={handleChange}
+            maxLength={50}
             placeholder='e.g., "10%" or "10"'
           />
         </div>

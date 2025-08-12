@@ -65,7 +65,9 @@ const AddTableModal = ({ show, handleClose, onSubmit }) => {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Table Type</Form.Label>
+            <Form.Label>
+            Table Type<span style={{ color: 'red' }}>*</span>
+            </Form.Label>
             <Form.Select
               {...register("table", { required: "Table name is required" })}
             >
@@ -82,7 +84,9 @@ const AddTableModal = ({ show, handleClose, onSubmit }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Table Code</Form.Label>
+            <Form.Label>
+            Table Code<span style={{ color: 'red' }}>*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter table code"
@@ -100,7 +104,9 @@ const AddTableModal = ({ show, handleClose, onSubmit }) => {
             )}
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>No of Seats</Form.Label>
+            <Form.Label>
+            No of Seats<span style={{ color: 'red' }}>*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter No of seats"

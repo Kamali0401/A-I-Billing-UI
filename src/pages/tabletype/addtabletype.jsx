@@ -92,13 +92,16 @@ const handleModalClose = () => {
       </Modal.Header>
       <Modal.Body>
         <div className="mb-2">
-          <label>Table Type </label>
+          <label>
+          Table Type<span style={{ color: 'red' }}>*</span>
+         </label>
           <input
             type="text"
             className="form-control"
             name="name"
             value={form.name}
             onChange={handleChange}
+            maxLength={150}
           />
         </div>
        

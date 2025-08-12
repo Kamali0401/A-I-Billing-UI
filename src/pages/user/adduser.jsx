@@ -100,9 +100,6 @@ const handleModalClose = () => {
       !form.name ||
       !form.RoleId||
       !form.phoneNo ||
-      !form.address ||
-      !form.locality ||
-      !form.info ||
       !form.userName ||
       !form.password
       
@@ -144,19 +141,24 @@ const handleModalClose = () => {
       </Modal.Header>
       <Modal.Body>
         <div className="mb-2">
-          <label>Name</label>
+          <label>
+          Name<span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             type="text"
             className="form-control"
             name="name"
             value={form.name}
             onChange={handleChange}
+            maxLength={150}
           />
         </div>
        
        
         <div className="mb-2">
-  <label>Role</label>
+  <label>
+  Role<span style={{ color: 'red' }}>*</span>
+  </label>
   {user ? (
     // 🔒 In edit mode — show role as readonly
     <input
@@ -188,13 +190,16 @@ const handleModalClose = () => {
 
         
         <div className="mb-2">
-          <label>Phone Number</label>
+          <label>
+          Phone Number<span style={{ color: 'red' }}>*</span>
+        </label>
           <input
             type="text"
             className="form-control"
             name="phoneNo"
             value={form.phoneNo}
             onChange={handleChange}
+            maxLength={10}
           />
         </div>
         
@@ -207,6 +212,7 @@ const handleModalClose = () => {
             name="address"
             value={form.address}
             onChange={handleChange}
+            maxLength={2000}
           />
         </div>
         <div className="mb-2">
@@ -230,7 +236,9 @@ const handleModalClose = () => {
           />
         </div>
         <div className="mb-2">
-          <label>Username</label>
+          <label>
+          Username<span style={{ color: 'red' }}>*</span>
+        </label>
           <input
             type="text"
             autoComplete="off"
@@ -238,10 +246,13 @@ const handleModalClose = () => {
             name="userName"
             value={form.userName}
             onChange={handleChange}
+            maxLength={250}
           />
         </div>
         <div className="mb-2">
-          <label>Password</label>
+          <label>
+          Password<span style={{ color: 'red' }}>*</span>
+        </label>
           <input
             type="password"
             autoComplete="new-password"
@@ -249,6 +260,7 @@ const handleModalClose = () => {
             name="password"
             value={form.password}
             onChange={handleChange}
+            maxLength={250}
             readOnly={!!user}
           />
         </div>

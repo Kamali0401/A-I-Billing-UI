@@ -54,12 +54,7 @@ const handleModalClose = () => {
   // Handle form submission
   const handleSubmit = async () => {
     // Simple form validation
-    if (
-      
-      !form.name ||!form.createdBy
-      
-      
-    ) {
+    if (!form.name  ) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",

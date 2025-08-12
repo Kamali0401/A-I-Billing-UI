@@ -91,7 +91,7 @@ const handleModalClose = () => {
   const handleSubmit = async () => {
     const { itemId, cost, createdBy } = form;
   
-    if (!itemId || !cost || !createdBy) {
+    if (!itemId || !cost) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",

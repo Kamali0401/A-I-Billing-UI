@@ -143,7 +143,9 @@ const handleModalClose = () => {
         ) : (
           <>
             <div className="mb-2">
-  <label>Item Name</label>
+  <label>
+  Item Name<span style={{ color: 'red' }}>*</span>
+ </label>
   {inventorycost ? (
     <input
       type="text"
@@ -169,7 +171,9 @@ const handleModalClose = () => {
 </div>
 
             <div className="mb-2">
-              <label>Cost</label>
+              <label>
+              Cost<span style={{ color: 'red' }}>*</span>
+              </label>
               <input
                 type="number"
                 className="form-control"

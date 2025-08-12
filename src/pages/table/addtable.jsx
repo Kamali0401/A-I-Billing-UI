@@ -147,7 +147,9 @@ const handleModalClose = () => {
         
 
         <div className="mb-2">
-          <label>Table Type</label>
+          <label>
+          Table Type<span style={{ color: 'red' }}>*</span>
+          </label>
           {loading ? (
             <div>Loading...</div>
           ) : error ? (
@@ -170,23 +172,29 @@ const handleModalClose = () => {
           )}
         </div>
         <div className="mb-2">
-          <label>Table Code</label>
+          <label>
+          Table Code<span style={{ color: 'red' }}>*</span>
+        </label>
           <input
             type="text"
             className="form-control"
             name="tableCode"
             value={form.tableCode}
             onChange={handleChange}
+            maxLength={50}
           />
         </div>
         <div className="mb-2">
-          <label>No of Seats</label>
+          <label>
+          No of Seats<span style={{ color: 'red' }}>*</span>
+         </label>
           <input
             type="text"
             className="form-control"
             name="noofSeats"
             value={form.noofSeats}
             onChange={handleChange}
+            maxLength={50}
           />
         </div>
       </Modal.Body>

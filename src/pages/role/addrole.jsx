@@ -95,7 +95,9 @@ const handleModalClose = () => {
       </Modal.Header>
       <Modal.Body>
         <div className="mb-2">
-          <label>Role Name</label>
+          <label>
+          Role Name<span style={{ color: 'red' }}>*</span>
+        </label>
           <input
             type="text"
             className="form-control"

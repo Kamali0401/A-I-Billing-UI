@@ -59,6 +59,22 @@ const RestaurantProfileModal = ({ isOpen, onClose, data, onSave }) => {
                 name={field}
                 value={formState[field] || ""}
                 onChange={handleChange}
+              maxLength={
+               field === "restaurantName" ? 100 :
+               field === "email" ? 100 :
+               field === "phone" ? 10 :
+               field === "address" ? 225 :
+               field === "city" ? 50 :
+               field === "state" ? 50 :
+               field === "country" ? 50 :
+               field === "zipCode" ? 10 :
+               field === "fssaiLicNo" ? 30 :
+               undefined 
+      
+                
+                }
+                pattern={field === "email" ? "^[^\\s@]+@$|^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$" : undefined}
+              
               />
             </Form.Group>
           ))}

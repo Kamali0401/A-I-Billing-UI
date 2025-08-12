@@ -17,6 +17,8 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
     isVeg: false,
     description: "",
     createdBy: "",
+    Quantity: "",
+    uom: "",
   });
 };
 const handleModalClose = () => {
@@ -31,6 +33,8 @@ const handleModalClose = () => {
     isVeg: false,
     description: "",
     createdBy: "",
+    Quantity: "",
+    uom: "",
   });
 
   useEffect(() => {
@@ -44,6 +48,9 @@ const handleModalClose = () => {
         isVeg: inventory.isVeg || false,
         description: inventory.description || "",
         createdBy: inventory.createdBy || username,
+        Quantity :inventory.Quantity || "",
+        uom : inventory.uom || "",
+
       });
     } else {
       setForm({
@@ -55,6 +62,9 @@ const handleModalClose = () => {
         isVeg: false,
         description: "",
         createdBy: username,
+        Quantity: "",
+        uom: "",
+        
       });
     }
   }, [inventory, username]);
@@ -68,10 +78,10 @@ const handleModalClose = () => {
   };
 
   const handleSubmit = async () => {
-    const { itemCode, category, subCategory, itemName, createdBy } = form;
+    const { category, subCategory, itemName, createdBy } = form;
 
 
-    if ( !itemCode || !category || !subCategory ||!itemName|| !createdBy) {
+    if ( !category || !subCategory ||!itemName|| !createdBy) {
 
       Swal.fire({
         text: "Please fill in all required fields.",
@@ -86,9 +96,9 @@ const handleModalClose = () => {
         category: form.category,
         subCategory: form.subCategory,
         itemName: form.itemName,
-        description: form.description,
         isVeg: form.isVeg,
         ...(inventory ? { modifiedBy: username } : { createdBy: username }),
+
       };
 
       if (inventory) {
@@ -186,6 +196,34 @@ const handleModalClose = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="mb-2">
+          <label>
+          Quantity
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            name="Quantity"
+            value={form.Quantity}
+            maxLength={150}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-2">
+          <label>
+          UOM
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            name="uom"
+            value={form.uom}
+            maxLength={150}
+            onChange={handleChange}
+          />
+        </div>
+
+
 
         <div className="mb-2">
           <label className="form-check-label">

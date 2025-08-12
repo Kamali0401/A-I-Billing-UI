@@ -96,7 +96,7 @@ const handleModalClose = () => {
   const handleSubmit = async () => {
    // console.log("Submitting form:", form);
 
-    if (!form.tableCode || !form.noofSeats || !form.tablename || !form.createdBy) {
+    if (!form.tableCode || !form.noofSeats || !form.tablename ) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",

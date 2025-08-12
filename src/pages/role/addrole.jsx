@@ -49,7 +49,7 @@ const handleModalClose = () => {
   // Form validation
   const handleSubmit = async () => {
   
-    if (!form.role || !form.createdBy) {
+    if (!form.role) {
       Swal.fire({
         text: "Please fill in all required fields.",
         icon: "error",

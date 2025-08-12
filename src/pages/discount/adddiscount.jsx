@@ -75,7 +75,7 @@ const handleModalClose = () => {
     const { discountCode, percentage, discountType,validUpto} = form;
     const trimmedPercentage = percentage.toString().trim();
 
-    if (!discountCode || !percentage || !discountType || !validUpto|| !form.createdBy || !isValidDiscount(percentage)) {
+    if (!discountCode || !percentage || !discountType || !validUpto || !isValidDiscount(percentage)) {
       Swal.fire({
         text: "Please fill in all required fields correctly.",
         icon: "error",

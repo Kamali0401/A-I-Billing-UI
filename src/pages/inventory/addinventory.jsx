@@ -81,7 +81,7 @@ const handleModalClose = () => {
     const { category, subCategory, itemName, createdBy } = form;
 
 
-    if ( !category || !subCategory ||!itemName|| !createdBy) {
+    if ( !category || !subCategory ||!itemName) {
 
       Swal.fire({
         text: "Please fill in all required fields.",

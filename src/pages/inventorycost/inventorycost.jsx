@@ -76,7 +76,8 @@ const roleId = localStorage.getItem("roleid");
     <div className="list-container">
       <div className="list-header">
         <h5>Inventory Cost Details</h5>
-         {roleId !== "5" && (
+         {(roleId !== "2" && roleId !== "3") && (
+
         <button onClick={handleAddinventorycost}>+ Add Inventory Cost</button>
          )}
       </div>
@@ -107,9 +108,10 @@ const roleId = localStorage.getItem("roleid");
             <th>ID</th>
             <th>Item Name</th>
             <th>Cost</th>
-             {roleId !== "5" && (
-            <th>Actions</th>
-             )}
+             {(roleId !== "2" && roleId !== "3") && (
+  <th>Actions</th>
+)}
+
           </tr>
         </thead>
         <tbody>
@@ -119,7 +121,7 @@ const roleId = localStorage.getItem("roleid");
                 <td data-label="Id">{index+1}</td>
                 <td data-label="ItemName">{inventorycost.itemName}</td>
                 <td data-label="Cost">{inventorycost.cost}</td>
-                 {roleId !== "5" && (
+{(roleId !== "2" && roleId !== "3") && (
                 <td  data-label="Actions"className="action-buttons">
                   <button className="btn-edit" onClick={() => handleEdit(inventorycost)}>
                     Edit

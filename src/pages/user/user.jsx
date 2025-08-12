@@ -76,9 +76,9 @@ const roleId = localStorage.getItem("roleid");
    
   <div className="list-header">
     <h4>User Details</h4>
-     {roleId !== "5" && (
-    <button onClick={handleAddUser}>+ Add User</button>
-     )}
+{(roleId !== "2" && roleId !== "3") && (
+  <button onClick={handleAddUser}>+ Add User</button>
+)}
   </div>
 
   {/* 🔍 Search box */}
@@ -109,8 +109,7 @@ const roleId = localStorage.getItem("roleid");
         <th>Name</th>
         <th>Locality</th>
         <th>Role</th>
-         {roleId !== "5" && (
-        <th>Actions</th>
+{(roleId !== "2" && roleId !== "3") && (        <th>Actions</th>
          )}
       </tr>
     </thead>
@@ -121,8 +120,8 @@ const roleId = localStorage.getItem("roleid");
           <td data-label="Name">{user.name}</td>
           <td data-label="Locality">{user.locality}</td>
           <td data-label="Role">{user.role}</td>
-           {roleId !== "5" && (
-          <td data-label="Actions" className="action-buttons">
+{(roleId !== "2" && roleId !== "3") && (
+            <td data-label="Actions" className="action-buttons">
             <button className="btn-edit" onClick={() => handleEdit(user)}>Edit</button>
             <button className="btn-delete" onClick={() => handleDelete(user.id)}>Delete</button>
           </td>)}

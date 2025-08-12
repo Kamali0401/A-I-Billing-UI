@@ -76,9 +76,10 @@ const roleId = localStorage.getItem("roleid");
       <div className="list-container">
         <div className="list-header">
           <h4>Discount</h4>
-           {roleId !== "5" && (
-          <button onClick={handleAdddiscount}>+ Add Discount</button>
-           )}
+{(roleId !== "2" && roleId !== "3") && (
+  <button onClick={handleAdddiscount}>+ Add Discount</button>
+)}
+
         </div>
 
         {/* Search bar */}
@@ -109,9 +110,10 @@ const roleId = localStorage.getItem("roleid");
               <th>Discount Type</th>
               <th>Amount/Percentage</th>
                <th>Valid UpTo</th>
-                {roleId !== "5" && (
-              <th>Actions</th>
-                )}
+                {(roleId !== "2" && roleId !== "3") && (
+  <th>Actions</th>
+)}
+
             </tr>
           </thead>
           <tbody>
@@ -125,7 +127,8 @@ const roleId = localStorage.getItem("roleid");
                  <td data-label="Valid Up To">
               {dayjs(discount.validUpto).format("YYYY-MM-DD")}
             </td>
-             {roleId !== "5" && (
+             {(roleId !== "2" && roleId !== "3") && (
+
                   <td data-label="Actions">
                     <div className="action-buttons">
                       <button className="btn-edit" onClick={() => handleEdit(discount)}>

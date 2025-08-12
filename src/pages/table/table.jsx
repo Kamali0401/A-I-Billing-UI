@@ -78,7 +78,7 @@ const roleId = localStorage.getItem("roleid");
       <div className="list-container">
         <div className="list-header">
           <h4>Table</h4>
-{(roleId !== "2" || roleId !== "3") && (
+{(roleId !== "2" && roleId !== "3") && (
           <button onClick={handleAddtable}>+ Add Table</button>
             )}
         </div>

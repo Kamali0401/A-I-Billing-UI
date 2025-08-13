@@ -53,7 +53,9 @@ const AddTableModal = ({ show, handleClose, onSubmit, table }) => {
   });
 };
 const handleModalClose = () => {
+  if (!table) { 
   resetForm(); 
+  }
   handleClose(); 
 };
 

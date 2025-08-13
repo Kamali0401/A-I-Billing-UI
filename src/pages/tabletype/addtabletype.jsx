@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { addNewTableType, updateTableType } from "../../app/redux/slice/tabletype/tabletypeSlice";
 import Swal from "sweetalert2";
+import TableType from "./tabletype";
 
 const AddTabModal = ({ show, handleClose, onSubmit, table }) => {
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ const AddTabModal = ({ show, handleClose, onSubmit, table }) => {
   });
 };
 const handleModalClose = () => {
+   if (!table) { 
   resetForm(); 
+   }
   handleClose(); 
 };
 

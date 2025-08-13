@@ -15,7 +15,9 @@ const AddRoleModal = ({ show, handleClose, onSubmit, role }) => {
   });
 };
 const handleModalClose = () => {
+  if (!role) { 
   resetForm(); 
+  }
   handleClose(); 
 };
 

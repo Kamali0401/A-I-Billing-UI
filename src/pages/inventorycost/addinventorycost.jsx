@@ -19,7 +19,9 @@ const resetForm = () => {
   });
 };
 const handleModalClose = () => {
+  if (!inventorycost) { 
   resetForm(); 
+  }
   handleClose(); 
 };
   const [form, setForm] = useState({

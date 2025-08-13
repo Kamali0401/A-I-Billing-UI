@@ -22,8 +22,12 @@ const AddInventoryModal = ({ show, handleClose, onSubmit, inventory }) => {
   });
 };
 const handleModalClose = () => {
-  resetForm(); 
-  handleClose(); 
+  if (!inventory) {  
+    resetForm();
+  }
+  handleClose();
+
+
 };
   const [form, setForm] = useState({
     itemCode: "",

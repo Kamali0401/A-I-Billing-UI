@@ -21,7 +21,9 @@ const resetForm = () => {
   });
 };
 const handleModalClose = () => {
+  if (!discount) { 
   resetForm(); 
+  }
   handleClose(); 
 };
   const [form, setForm] = useState({

@@ -24,22 +24,26 @@ const Sidebar = ({ isOpen, onClose }) => {
           {/* Always show Dashboard */}
           <li onClick={() => handleNavigation(RP.dashboard)}>Dashboard</li>
           <li onClick={() => handleNavigation("/main/tableView")}>Table View</li>
-
           {/* Show remaining items only if roleId is NOT "4" and NOT "5" */}
           {roleId !== "4" && roleId !== "5" && (
             <>
-              <li onClick={() => handleNavigation("/main/myprofile")}>My Profile</li>
-              <li onClick={() => handleNavigation("/main/resetpassword")}>Reset Password</li>
-              <li onClick={() => handleNavigation("/main/user")}>User</li>
-              <li onClick={() => handleNavigation("/main/role")}>Role</li>
+              
               <li onClick={() => handleNavigation("/main/table")}>Table Type</li>
               <li onClick={() => handleNavigation("/main/tabledetail")}>Table</li>
-              <li onClick={() => handleNavigation("/main/discount")}>Discount</li>
               <li onClick={() => handleNavigation("/main/inventory")}>Inventory</li>
               <li onClick={() => handleNavigation("/main/inventorycost")}>Inventory Cost</li>
-              <li onClick={() => handleNavigation("/main/report")}>Report</li>
+              <li onClick={() => handleNavigation("/main/discount")}>Discount</li>
+
+              <li onClick={() => handleNavigation("/main/user")}>User</li>
+              <li onClick={() => handleNavigation("/main/role")}>Role</li>
+                            <li onClick={() => handleNavigation("/main/report")}>Report</li>
+
+              <li onClick={() => handleNavigation("/main/myprofile")}>Restaurant Profile</li>
+
             </>
           )}
+          <li onClick={() => handleNavigation("/main/resetpassword")}>Reset Password</li>
+
         </NavList>
       </SidebarContainer>
     </>

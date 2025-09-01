@@ -22,6 +22,7 @@ import InventoryList from "../../pages/inventory/inventory";
 import InventoryCostList from "../../pages/inventorycost/inventorycost";
 import ProfilePage from "../../pages/profile/profilePage";
 import Report  from "../../pages/reports/report";
+import ReportView from "../../pages/reports/reportView"
 const AppRoute = () => {
 
     return (
@@ -43,6 +44,7 @@ const AppRoute = () => {
           <Route path={RP.inventorycost} element={<InventoryCostList />} />
           <Route path={RP.profile} element={<ProfilePage />} />
             <Route path={RP.report} element={<Report />} />
+                 <Route path={RP.reportview} element={<ReportView />} />
 <Route path={RP.resetpassword} element={<ResetPassword  />} />
           </Route>
         </Routes>

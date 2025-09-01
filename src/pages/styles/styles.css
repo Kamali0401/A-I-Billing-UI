@@ -257,8 +257,21 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+   max-height: 13%;   /* adjust as per design */
+  overflow-y: auto;    /* vertical scroll */
+  max-width: 100%; 
 }
 
+@media (min-width: 312px) and (max-width: 780px) {
+  .items-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-height: 300px;   /* better than % for scroll */
+    overflow-y: auto;
+    max-width: 100%;
+  }
+}
 .item-button {
   display: block;
   margin: 0.25rem 0;

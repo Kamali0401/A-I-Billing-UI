@@ -206,6 +206,7 @@ const InventoryList = ({ orderDetails, setOrderDetails, tableId, tableCatagory, 
             status: "Hold",
             isActive: true,
             itemComment:"",
+            isKotPrint:true
           },
         ],
       }));
@@ -258,6 +259,7 @@ const InventoryList = ({ orderDetails, setOrderDetails, tableId, tableCatagory, 
             status: "Hold", // Initial status
             isActive: true,
             itemComment:"",
+            isKotPrint:true
           },
         ],
       });

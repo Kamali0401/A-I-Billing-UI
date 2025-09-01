@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ApiKey } from "../../api/endpoints";
 import { publicAxios } from "../../api/config";
+import { useNavigate } from "react-router-dom";
+import { routePath as RP } from "../../app//routes/routepath";
+import ReportTable from "./reportView";
 const mealTypes = ["Breakfast", "Lunch", "Dinner"];
 
 export default function ReportFilterPage() {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [data, setData] = useState([]);
@@ -17,7 +21,7 @@ const [showReportButtons, setShowReportButtons] = useState(false);
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [items, setItems] = useState([]);
-
+ const [reportData, setReportData] = useState([]);
  useEffect(() => {
   const fetchCategories = async () => {
     try {
@@ -83,35 +87,61 @@ const handleCategoryChange = (e) => {
   }
 };
 
-  const handleSubmit = async (data) => {
+const handleSubmit = async (data) => {
   try {
-    debugger;
-    const response = await publicAxios.get(ApiKey.Report, {
-      params: {
-        reportType:data,
-        startDate: startDate || null,
-        endDate: endDate || null,
-        category: category || null,
-        subCategory: subcategory || null,
-        itemName: item || null,
-       // isVeg: isVeg === true ? true : isVeg === false ? false : null
-       isVeg: category ? (isVeg === true ? true : isVeg === false ? false : null) : null
-      },
-      responseType: 'blob'
-    });
+    if (data === "view") {
+      const response = await publicAxios.get(ApiKey.Report, {
+        params: {
+          reportType: data,
+          startDate: startDate || null,
+          endDate: endDate || null,
+          category: category || null,
+          subCategory: subcategory || null,
+          itemName: item || null,
+          isVeg: category ? (isVeg === true ? true : isVeg === false ? false : null) : null
+        }
+      });
+      console.log(response,"res");
 
-    const blob = new Blob([response.data], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = 'SoldItemsReport.xlsx';
-    link.click();
+      // ✅ Only navigate if data is "view"
+     // navigate(RP.reportview, { state: { reportData: response.data } });
+// let reportData = response.data;
+ let reportData = Array.isArray(response.data) ? response.data : [];
+    // ✅ Take only last 30 rows by billDate (assuming billDate or CreatedDate exists)
+    reportData = reportData
+      .sort((a, b) => new Date(b.billDate) - new Date(a.billDate)) // latest first
+      .slice(0, 30);
+
+    setReportData(reportData); // or pass to table component 
+    } else {
+      // Excel download
+      const response = await publicAxios.get(ApiKey.Report, {
+        params: {
+          reportType: data,
+          startDate: startDate || null,
+          endDate: endDate || null,
+          category: category || null,
+          subCategory: subcategory || null,
+          itemName: item || null,
+          isVeg: category ? (isVeg === true ? true : isVeg === false ? false : null) : null
+        },
+        responseType: "blob"
+      });
+
+      const blob = new Blob([response.data], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = "Report.xlsx";
+      link.click();
+    }
   } catch (error) {
-    console.error('Failed to download report:', error);
-    alert('Failed to download report.');
+    console.error("Failed to fetch report:", error);
+    alert("Failed to fetch report.");
   }
 };
+
 
 
 
@@ -213,16 +243,26 @@ const handleCategoryChange = (e) => {
       <div className="card p-4 shadow-sm border bg-light">
         
         <div className="row">
-          <div className="col-lg-6 mb-2">
+          <div className="col-lg-4 mb-2">
             <button className="btn btn-success w-100" onClick={() => handleSubmit("item")}>
               Item Report
             </button>
           </div>
-          <div className="col-lg-6 mb-2">
+          <div className="col-lg-4 mb-2">
             <button className="btn btn-success w-100" onClick={() => handleSubmit("sales")}>
               Sales Report
             </button>
           </div>
+         
+        <div className="col-lg-4 mb-2">
+          <button
+            className="btn btn-success w-100"
+           onClick={() => handleSubmit("view")}
+          >
+            View
+          </button>
+        </div>
+      
         </div>
       </div>
    
@@ -230,6 +270,7 @@ const handleCategoryChange = (e) => {
 )}
 
       </div>
+      <ReportTable data={reportData} />
     </div>
   );
 }

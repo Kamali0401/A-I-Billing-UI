@@ -91,9 +91,180 @@ const updateRemainingAmount = (updatedSplitDetails) => {
     });
   };
    const [confirmedSplitDetails, setConfirmedSplitDetails] = useState([]);
+/*  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  const handlebillprintsave = useReactToPrint({ documentTitle: "A&IS Cafe Bill", contentRef: billRef });
+   
+const handleRawBTPrint = () => {
+  debugger;
+    if (!orderDetails) return;
+
+    let kotText = `KOT\n`;
+    kotText += `Table: ${orderDetails?.tableCatagory}/${orderDetails?.tableCode}\n`;
+    kotText += `Waiter: ${orderDetails?.waiterName || ""}\n`;
+    kotText += "--------------------------\n";
+
+    orderDetails?.itemDetails?.forEach((item) => {
+      if (item.isKotPrint) {
+        kotText += `${item.itemName} x ${item.qty}\n`;
+        if (item.itemComment) kotText += `  (${item.itemComment})\n`;
+      }
+    });
+
+    kotText += "--------------------------\n";
+    kotText += "Thank You!\n";
+
+    // ✅ Encode text for RawBT
+   // const encoded = btoa(unescape(encodeURIComponent(kotText)));
+   // window.open(`rawbt:base64,${encoded}`, "_blank");
+  // const encoded = btoa(unescape(encodeURIComponent(kotText)));
+
+  // ✅ Intent URL (works better in Chrome on Android)
+  //window.location.href = `intent://base64,${encoded}#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end`;
+ const encoded = btoa(unescape(encodeURIComponent(kotText)));
+window.location.href = `intent://base64,${encoded}#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end`;
+
+  // ✅ Instead of window.open, create a hidden <a> link and click it
+/*  const link = document.createElement("a");
+  link.href = `rawbt:base64,${encoded}`;
+  link.style.display = "none";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};*/
+
+
+ 
+ // const handlebillprintsave = useReactToPrint({ documentTitle: "A&IS Cafe Bill", contentRef: billRef });
   const handlekotprintsave = useReactToPrint({ documentTitle: "KOT", contentRef: kotRef });
+const handleKotPrintAndCheckout = async () => {
+   try {
+  await handlecheckout("kotprint");
+  
+   // Get plain text for RawBT
+    const kotTextDiv = kotRef.current.querySelector(".kot-plain-text");
+    const kotText = kotTextDiv ? kotTextDiv.innerText : "";
+
+    if (!kotText) {
+      console.error("❌ KOT text is empty!");
+      return;
+    }
+
+    const encoded = btoa(unescape(encodeURIComponent(kotText)));
+
+    // Android: RawBT printing
+    if (/android/i.test(navigator.userAgent)) {
+      const link = document.createElement("a");
+      link.href = `rawbt:base64,${encoded}`;
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log("✅ RawBT print triggered");
+    } else {
+      // Desktop fallback
+      const iframe = document.createElement("iframe");
+      iframe.style.position = "absolute";
+      iframe.style.top = "-10000px";
+      iframe.style.left = "-10000px";
+      document.body.appendChild(iframe);
+
+      const style = `
+        <style>
+          @page { margin: 0; }
+          body { margin: 0; padding: 0; font-family: monospace; font-size: 12px; line-height: 1.2em; width: 165px; text-align: left; }
+        </style>
+      `;
+
+      iframe.contentDocument.open();
+      iframe.contentDocument.write(`
+        <html>
+          <head>${style}</head>
+          <body><pre>${kotText}</pre></body>
+        </html>
+      `);
+      iframe.contentDocument.close();
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+      iframe.contentWindow.onafterprint = () => {
+        document.body.removeChild(iframe);
+      };
+      console.log("✅ Desktop print triggered");
+    }
+    
+   // console.log("✅ KOT action + print triggered successfully");
+  } catch (err) {
+    console.error("❌ Error during KOT + print:", err);
+  }
+    
+                  // then trigger print
+};
+
+const handlebillprintsave = () => {
+  if (!billRef.current) return;
+
+  // 1. Extract plain text
+  const billTextDiv = billRef.current.querySelector(".bill-plain-text");
+  const billText = billTextDiv ? billTextDiv.innerText : "";
+
+  if (!billText) {
+    console.error("❌ Bill text is empty");
+    return;
+  }
+
+  const encoded = btoa(unescape(encodeURIComponent(billText)));
+
+  // 2. Detect Android browser
+  if (/android/i.test(navigator.userAgent)) {
+    // ✅ Send to RawBT
+    const link = document.createElement("a");
+    link.href = `rawbt:base64,${encoded}`;
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    console.log("✅ RawBT print triggered");
+  } else {
+    // ✅ Fallback to normal browser print
+    printBillIframe(billText);
+  }
+};
+const printBillIframe = (billText) => {
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "absolute";
+  iframe.style.top = "-10000px";
+  iframe.style.left = "-10000px";
+  document.body.appendChild(iframe);
+
+  iframe.contentDocument.open();
+  iframe.contentDocument.write(`
+    <html>
+      <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <style>
+          @page { margin: 0; }
+           /* ✅ Print-only style */
+          @media print {
+            body { width: 225px; margin: 0; padding: 0; }
+          }
+         body {
+            font-family: monospace;
+            font-size: 11.5px;
+            line-height: 1.4;
+          }
+          pre { margin: 0; white-space: pre-wrap; }
+        </style>
+      </head>
+      <body><pre>${billText}</pre></body>
+    </html>
+  `);
+  iframe.contentDocument.close();
+  iframe.contentWindow.focus();
+  iframe.contentWindow.print();
+  iframe.contentWindow.onafterprint = () => {
+    document.body.removeChild(iframe);
+  };
+};
+
 
   const kotGeneratedCount = orderDetails?.itemDetails?.filter((item) => item.status === "Hold").length || 0;
   //const allItemsReadyForBilling = orderDetails?.itemDetails?.every((item) => item.status === "Check Out");
@@ -105,8 +276,8 @@ const allItemsReadyForBilling = allItemsAreActive && anyItemIsCheckedOut;
 /*useEffect(() => {
   if (seatId) {
     debugger;
-    const seatCount = seatId.split(',').filter(Boolean).length;
-    setnoofPersonCount(seatCount);
+    //const seatCount = seatId.split(',').filter(Boolean).length;
+    setnoofPersonCount(seatId);
   }
 }, [seatId]);*/
 useEffect(() => {
@@ -114,10 +285,10 @@ useEffect(() => {
   if (seatId !== undefined && seatId !== null) {
     let seatCount = 0;
 
-    if (typeof seatId === "string" && seatId.includes(",")) {
+    if (typeof seatId === "string") {
       seatCount = seatId.split(",").filter(Boolean).length;
-    } else {
-      seatCount = (seatId); // Handles both string and number
+    } else if (typeof seatId === "number") {
+      seatCount = seatId; // single seat
     }
 
     setnoofPersonCount(seatCount);
@@ -416,9 +587,9 @@ if (paymentMethod === "Split" && confirmedSplitDetails) {
 
   const handlesave = async (data) => {
 debugger;
-     const currentHoldItems = orderDetails?.itemDetails?.filter(item => item.status === "Hold" && item.isActive) || [];
-  setHoldItems(currentHoldItems); // <-- you can use this outside as needed
-    localStorage.setItem("holdItems", JSON.stringify(currentHoldItems));
+    /* const currentHoldItems = orderDetails?.itemDetails?.filter(item => item.status === "Hold" && item.isActive) || [];
+    setHoldItems(currentHoldItems); // <-- you can use this outside as needed
+    localStorage.setItem("holdItems", JSON.stringify(currentHoldItems));*/
     const updatedFormData = orderDetails?.itemDetails.map((item) => ({
       ...item,
       status: item.status === "Hold" ? data : item.status,
@@ -486,7 +657,7 @@ debugger;
   };
 
 
-  const handlecheckout = async () => {
+  const handlecheckout = async (data) => {
     debugger;
     setIsLoading(true); // Stop loading
     //  setCheckoutFlag(true);
@@ -524,7 +695,8 @@ debugger;
     OrderId: currentOrderId,
     Id: item.id,
     IsFoodReceived: isFoodReceived,
-    IsCheckOut: true,  // ✅ Updated logic
+    //IsCheckOut: true,  // ✅ Updated logic
+     IsCheckOut: data === "kotprint" ? false : true,
     Review: review,
     ModifiedBy: username,
   };
@@ -1236,7 +1408,7 @@ debugger;
             )}
            
           <div className="button-group">
-{localStorage.getItem("roleid") !== "4" && localStorage.getItem("roleid") !== "5" && (
+{/*{localStorage.getItem("roleid") !== "4" && localStorage.getItem("roleid") !== "5" && (*/}
     <>
             <button
               className="action-button"
@@ -1291,7 +1463,7 @@ debugger;
               Bill
             </button>
 </>
-            )}
+            {/*)}*/}
             <button
               className="action-button"
               onClick={handleOpenModal}
@@ -1310,17 +1482,17 @@ debugger;
                 billData={orderDetails || { itemDetails: [] }}
                  // currentKotPrintId={holdItems}
                //  currentKotPrintId={holdItems.map((item) => item.itemId)}
-               currentKotPrintId={
+           /*    currentKotPrintId={
       (holdItems?.length > 0
         ? holdItems
         : JSON.parse(localStorage.getItem("holdItems") || "[]")
-      ).map((item) => item.itemId)}
+      ).map((item) => item.itemId)}*/
               />
             </div>
 
             <button
               className="action-button-2"
-              onClick={handlekotprintsave}
+              onClick={handleKotPrintAndCheckout}
               disabled={kotGeneratedCount > 0 || orderDetails?.itemDetails?.some(item => item.status === "Check Out")}
               style={{
                 backgroundColor:
@@ -1438,7 +1610,7 @@ debugger;
             <Button variant="secondary" onClick={handleCloseModal}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={handlecheckout}>
+            <Button variant="primary" onClick={() => handlecheckout("Checkout")} >
               continue
             </Button>
           </Modal.Footer>

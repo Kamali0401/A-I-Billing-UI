@@ -18,5 +18,6 @@ export const routePath = {
     profile:"myprofile",
       resetpassword:"resetpassword",
        report:"report",
+       reportview:"reportview"
   };
   

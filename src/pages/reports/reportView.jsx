@@ -55,13 +55,28 @@ const formatValue = (val, col, row) => {
   }
 
   // ✅ Format Bill Date
-  if (col.toLowerCase().includes("date")) {
+  /*if (col.toLowerCase().includes("date")) {
     const d = new Date(val);
     return d.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
     });
+  }*/
+ // ✅ Format Bill Date to 12-hour format
+  if (col.toLowerCase().includes("date")) {
+    const d = new Date(val);
+    if (!isNaN(d)) {
+      return d.toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true, // ✅ 12-hour format with AM/PM
+      });
+    }
+    return val ?? "-";
   }
 
   // ✅ Format currency fields

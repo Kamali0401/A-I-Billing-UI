@@ -73,7 +73,7 @@ const formatValue = (val, col, row) => {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: true, // ✅ 12-hour format with AM/PM
+        hour12: false, // ✅ 12-hour format with AM/PM
       });
     }
     return val ?? "-";

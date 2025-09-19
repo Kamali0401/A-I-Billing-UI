@@ -11,7 +11,12 @@ const BillPrint = forwardRef((props, ref) => {
   // 🔹 Ensure billData works for both object or array
   const bill = Array.isArray(billData) ? billData[0] : billData;
 
-  const formatDate = (iso) => new Date(iso).toLocaleString("en-IN");
+ const formatDate = (iso) => new Date(iso).toLocaleString("en-IN", {year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,});
 
   const calculateTotals = () => {
     const serviceamount = bill?.serviceCharge || 0.0;

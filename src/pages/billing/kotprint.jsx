@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from "react";
-import qz from "qz-tray";
+//import qz from "qz-tray";
 import "../../pages/styles/styles.css";
 const KotPrint = forwardRef((props, ref) => {
 debugger;

@@ -584,6 +584,26 @@ if (paymentMethod === "Split" && confirmedSplitDetails) {
       console.error("Error saving order:", error);
     }
   };
+const handleDeleteBill = async (orderId) => {
+  try {
+    debugger;
+      const response = await publicAxios.delete(`${ApiKey.DeleteBillDetails}/${orderId}`);
+
+    //await deleteBillApi(orderDetails?.orderId || 0);
+
+      Swal.fire({
+      icon: "success",
+      title: "Deleted",
+      text: response?.message || "Bill deleted successfully",
+    });
+    navigate(-1);
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      text: error?.message ||  error?.response?.data?.message || "Failed to delete bill",
+    });
+  }
+};
 
   const handlesave = async (data) => {
 debugger;
@@ -1024,11 +1044,29 @@ debugger;
                         -
                       </button>
                       <input
-                        type="number"
-                        readOnly
-                        value={item.qty}
-                        disabled={item.status !== "Hold"}
-                      />
+  type="text"
+  min="1"
+  value={item.qty ?? 1}
+  disabled={item.status !== "Hold"}
+  onChange={(e) => {
+    const value = Math.max(Number(e.target.value) || 1, 1);
+
+    setOrderDetails((prevDetails) => ({
+      ...prevDetails,
+      itemDetails: prevDetails.itemDetails.map((detail) =>
+        detail.id === item.id
+          ? {
+              ...detail,
+              qty: value,
+              isActive: true,
+            }
+          : detail
+      ),
+    }));
+  }}
+  onWheel={(e) => e.target.blur()}
+/>
+
                       <button
                         onClick={() => {
                           setOrderDetails((prevDetails) => ({
@@ -1447,6 +1485,22 @@ debugger;
               }}
             >
               Print Bill
+            </button>
+             <button
+              className="action-button"
+              onClick={() => handleDeleteBill(orderDetails?.orderId)}
+              disabled={!allItemsReadyForBillingPrint} // Disable if conditions are not met
+              style={{
+                backgroundColor: !allItemsReadyForBillingPrint
+                  ? "#d3d3d3"
+                  : "#d32f2f", // Gray if disabled, blue if enabled
+                cursor: !allItemsReadyForBillingPrint
+                  ? "not-allowed"
+                  : "pointer",
+                color: "white",
+              }}
+            >
+              Cancel Bill
             </button>
             <button
               className="action-button"

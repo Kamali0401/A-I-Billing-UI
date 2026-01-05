@@ -15,6 +15,7 @@ export const ApiKey = {
     Table:"/tableMaterDto",
     RestaurantProfile:"/restaurant-profile",
     ResetPassword:"/reset-password",
-    Report:"/reportDto/sold-report"
+    Report:"/reportDto/sold-report",
+    DeleteBillDetails:"/billingDto/orderId",
   };
   

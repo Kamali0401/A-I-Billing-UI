@@ -1486,6 +1486,7 @@ debugger;
             >
               Print Bill
             </button>
+          {localStorage.getItem("roleid") !== "4" &&(
              <button
               className="action-button"
               onClick={() => handleDeleteBill(orderDetails?.orderId)}
@@ -1501,7 +1502,7 @@ debugger;
               }}
             >
               Cancel Bill
-            </button>
+            </button>)}
             <button
               className="action-button"
               onClick={handlebillsave}
